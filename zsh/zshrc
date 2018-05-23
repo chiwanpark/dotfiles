@@ -1,0 +1,24 @@
+# Zsh configuration
+source "$HOME/.config/zsh/slimzsh/slim.zsh"
+fpath=("$HOME/.config/zsh/zsh-completions/src" "$HOME/.config/zsh/zfunc" $fpath)
+
+# Editor configuration
+export EDITOR=nvim
+alias vi=nvim
+
+# PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+# ls command
+export CLICOLOR=1 # for Darwin
+ls --color=auto &> /dev/null && alias ls='ls --color=auto'
+alias ll='ls -lh'
+
+# ssh proxy
+alias proxy-box='ssh -C2qTnN -D 8111 box.chiwanpark.com'
+alias proxy-snu='ssh -C2qTnN -D 8111 -p2222 datalab.snu.ac.kr'
+alias proxy-dumbo-yarn='ssh -p2123 dumbo.unist.ac.kr -N -L 8088:dumbo060:8088'
+alias proxy-dumbo-hdfs='ssh -p2123 dumbo.unist.ac.kr -N -L 50070:dumbo060:50070'
+alias proxy-dumbo-mrhistory='ssh -p2123 dumbo.unist.ac.kr -N -L 19888:dumbo060:19888'
+alias proxy-dumbo-nodemanager='ssh -p2123 dumbo.unist.ac.kr -N -L 8042:dumbo060:8042'
+alias proxy-dumbo-pregelix='ssh -p2123 dumbo.unist.ac.kr -N -L 16001:dumbo060:16001'

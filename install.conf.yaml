@@ -1,4 +1,17 @@
-- clean: []
-- link: {}
-- shell: []
+- clean: ['~']
 
+- link:
+    ~/.config/zsh:
+      force: true
+      path: zsh
+    ~/.zshrc:
+      force: true
+      path: zsh/zshrc
+
+- shell:
+    - command: [git pull, Updating dotfiles...]
+      stdout: true
+      stderr: true
+    - command: [git submodule update --init --recursive --quiet, Updating submodules...]
+      stdout: true
+      stderr: true
