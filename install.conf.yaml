@@ -9,12 +9,14 @@
       path: zsh/zshrc
     ~/.config/nvim/init.vim:
       force: true
+      create: true
       path: vim/init.vim
     ~/.tmux.conf:
       force: true
       path: tmux/tmux.conf
     ~/.ssh/config:
       force: true
+      create: true
       path: ssh/config
 
 - shell:
