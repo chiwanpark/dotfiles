@@ -39,10 +39,14 @@ Plug 'bling/vim-airline'
 " deoplete.nvim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup=1
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " vim-javacomplete2
 Plug 'artur-shaik/vim-javacomplete2'
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+" configuration for xml
+autocmd FileType xml setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
 
 " pydoc.vim (Python)
 Plug 'https://github.com/fs111/pydoc.vim.git'
