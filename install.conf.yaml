@@ -10,6 +10,9 @@
     ~/.config/nvim/init.vim:
       force: true
       path: vim/init.vim
+    ~/.tmux.conf:
+      force: true
+      path: tmux/tmux.conf
 
 - shell:
     - command: [git pull, Updating dotfiles...]
