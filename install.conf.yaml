@@ -13,6 +13,9 @@
     ~/.tmux.conf:
       force: true
       path: tmux/tmux.conf
+    ~/.ssh/config:
+      force: true
+      path: ssh/config
 
 - shell:
     - command: [git pull, Updating dotfiles...]
