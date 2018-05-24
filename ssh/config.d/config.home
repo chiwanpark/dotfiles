@@ -1,0 +1,11 @@
+Host box
+    HostName box.chiwanpark.com
+    User chiwanpark
+
+Host mars
+    HostName mars.chiwanpark.com
+    User chiwanpark
+
+Host hq
+    HostName hq.chiwanpark.com
+    User root

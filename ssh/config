@@ -3,3 +3,5 @@ ServerAliveInterval 15
 ServerAliveCountMax 6
 Compression yes
 GSSAPIAuthentication yes
+
+Include config.d/*

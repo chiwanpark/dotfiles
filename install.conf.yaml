@@ -18,6 +18,10 @@
       force: true
       create: true
       path: ssh/config
+    ~/.ssh/config.d:
+      force: true
+      create: true
+      path: ssh/config.d
 
 - shell:
     - command: [git pull, Updating dotfiles...]
