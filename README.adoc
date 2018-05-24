@@ -13,11 +13,11 @@ All files should be installed with the script.
 = Usage
 
 [source,sh]
----
+----
 $ git clone https://github.com/chiwanaprk/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
 $ ./install
----
+----
 
 = License
 
