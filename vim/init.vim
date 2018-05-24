@@ -43,7 +43,16 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " vim-javacomplete2
 Plug 'artur-shaik/vim-javacomplete2'
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd FileType java setlocal shiftwidth=2 tabstop=2 omnifunc=javacomplete#Complete
+
+" neoformat
+Plug 'sbdchd/neoformat'
+let g:neoformat_java_google = {
+    \ 'exe': 'java',
+    \ 'args': ['-jar ~/.local/share/nvim/external-tools/google-java-format-1.5-all-deps.jar', '-'],
+    \ 'stdin': 1,
+    \ }
+let g:neoformat_enabled_java = ['google']
 
 " configuration for xml
 autocmd FileType xml setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
