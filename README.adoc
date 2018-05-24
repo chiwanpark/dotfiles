@@ -1,0 +1,24 @@
+= Dotfiles
+
+This repository provides a set of dotfiles with a configuration script `install`.
+All files should be installed with the script.
+
+= Configuration
+
+* zsh
+* neovim
+* tmux
+* ssh
+
+= Usage
+
+[source,sh]
+---
+$ git clone https://github.com/chiwanaprk/dotfiles.git ~/.dotfiles
+$ cd ~/.dotfiles
+$ ./install
+---
+
+= License
+
+link:https://github.com/chiwanpark/dotfiles/blob/master/LICENSE[MIT]
