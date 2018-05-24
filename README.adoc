@@ -14,7 +14,7 @@ All files should be installed with the script.
 
 [source,sh]
 ----
-$ git clone https://github.com/chiwanaprk/dotfiles.git ~/.dotfiles
+$ git clone https://github.com/chiwanpark/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
 $ ./install
 ----
