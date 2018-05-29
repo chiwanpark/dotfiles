@@ -35,6 +35,11 @@ Plug 'tpope/vim-surround'
 
 " vim-airline
 Plug 'bling/vim-airline'
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#fnamemod=':t'
+
+" denite.nvim
+Plug 'Shougo/denite.nvim'
 
 " deoplete.nvim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
