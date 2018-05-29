@@ -39,3 +39,6 @@
     - command: ['curl -fLo ~/.local/share/nvim/external-tools/google-java-format-1.5-all-deps.jar --create-dirs https://github.com/google/google-java-format/releases/download/google-java-format-1.5/google-java-format-1.5-all-deps.jar', Downloading google-java-format...]
       stdout: true
       stderr: true
+    - command: [touch ~/.config/nvim/init.vim.local, Creating local vim configuration file...]
+      stdout: true
+      stderr: true

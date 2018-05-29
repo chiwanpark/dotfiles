@@ -65,11 +65,8 @@ autocmd FileType xml setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#Comple
 " pydoc.vim (Python)
 Plug 'https://github.com/fs111/pydoc.vim.git'
 
-" jedi-vim (Python)
-Plug 'davidhalter/jedi-vim'
-let g:jedi#popup_on_dot=0
-let g:jedi#popup_select_first=0
-let g:jedi#force_py_version=3
+" deoplete-jedi
+Plug 'zchee/deoplete-jedi'
 
 " python-mode (Python)
 Plug 'python-mode/python-mode'
@@ -78,3 +75,5 @@ let g:pymode_options_colorcolumn=0
 let g:pymode_lint_ignore="E501,E402"
 
 call plug#end()
+
+source $HOME/.config/nvim/init.vim.local
