@@ -74,6 +74,10 @@ set foldlevel=99
 let g:pymode_options_colorcolumn=0
 let g:pymode_lint_ignore="E501,E402"
 
+" vimtex (LaTeX)
+Plug 'lervag/vimtex'
+autocmd FileType tex setlocal shiftwidth=2 tabstop=2
+
 call plug#end()
 
 source $HOME/.config/nvim/init.vim.local
