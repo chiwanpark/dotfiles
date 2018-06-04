@@ -2,6 +2,9 @@
 source "$HOME/.config/zsh/slimzsh/slim.zsh"
 fpath=("$HOME/.config/zsh/zsh-completions/src" "$HOME/.config/zsh/zfunc" $fpath)
 
+# locale
+export LANG=en_US.UTF-8
+
 # Editor configuration
 export EDITOR=nvim
 alias vi=nvim
