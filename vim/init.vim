@@ -1,5 +1,7 @@
 " init.vim for Chiwan Park
 
+set hidden
+
 " 1) read opened files again if changes are occurred outside nvim
 " 2) write a modified buffer on each :next, ...
 set autoread
@@ -38,12 +40,14 @@ Plug 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemod=':t'
 
-" denite.nvim
-Plug 'Shougo/denite.nvim'
+" nerdtree
+Plug 'scrooloose/nerdtree'
+map <Leader>nt <ESC>:NERDTreeToggle<CR>
 
 " deoplete.nvim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup=1
+let g:deoplete#enable_smart_case=1
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " vim-javacomplete2
@@ -65,14 +69,19 @@ autocmd FileType xml setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#Comple
 " pydoc.vim (Python)
 Plug 'https://github.com/fs111/pydoc.vim.git'
 
-" deoplete-jedi
+" deoplete-jedi (Python)
 Plug 'zchee/deoplete-jedi'
 
+" jedi-vim (Python)
+Plug 'davidhalter/jedi-vim'
+let g:jedi#completions_enabled=0
+
 " python-mode (Python)
-Plug 'python-mode/python-mode'
+Plug 'python-mode/python-mode', {'branch': 'develop'}
 set foldlevel=99
 let g:pymode_options_colorcolumn=0
-let g:pymode_lint_ignore="E501,E402"
+let g:pymode_lint_ignore=["E501", "E402"]
+let g:pymode_rope=0
 
 " vimtex (LaTeX)
 Plug 'lervag/vimtex'
