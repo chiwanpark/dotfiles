@@ -22,6 +22,10 @@
       force: true
       create: true
       path: ssh/config.d
+    ~/.pip/pip.conf:
+      force: true
+      create: true
+      path: pip/pip.conf
 
 - shell:
     - command: [git pull, Updating dotfiles...]
