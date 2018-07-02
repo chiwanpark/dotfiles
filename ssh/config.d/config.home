@@ -9,3 +9,28 @@ Host mars
 Host hq
     HostName hq.chiwanpark.com
     User root
+
+Host dumbo
+    HostName dumbo.unist.ac.kr
+    Port 2123
+    User chiwanpark
+
+Host datalab
+    HostName datalab.snu.ac.kr
+    Port 2222
+    User chiwanpark
+
+Host matisse
+    HostName matisse.snu.ac.kr
+    Port 2222
+    User chiwanpark
+
+Host monet
+    HostName monet.snu.ac.kr
+    Port 2222
+    User chiwanpark
+
+Host gogh
+    HostName gogh.snu.ac.kr
+    Port 2222
+    User chiwanpark
