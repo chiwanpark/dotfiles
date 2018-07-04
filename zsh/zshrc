@@ -26,3 +26,6 @@ alias proxy-dumbo-hdfs='ssh -p2123 dumbo.unist.ac.kr -N -L 50070:dumbo060:50070'
 alias proxy-dumbo-mrhistory='ssh -p2123 dumbo.unist.ac.kr -N -L 19888:dumbo060:19888'
 alias proxy-dumbo-nodemanager='ssh -p2123 dumbo.unist.ac.kr -N -L 8042:dumbo060:8042'
 alias proxy-dumbo-pregelix='ssh -p2123 dumbo.unist.ac.kr -N -L 16001:dumbo060:16001'
+
+# speedtest-cli
+alias speedtest-cli='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
