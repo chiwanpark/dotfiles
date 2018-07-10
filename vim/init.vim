@@ -48,11 +48,15 @@ map <Leader>nt <ESC>:NERDTreeToggle<CR>
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup=1
 let g:deoplete#enable_smart_case=1
+let g:deoplete#auto_complete_start_length=2
+let g:deoplete#sources={}
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " vim-javacomplete2
 Plug 'artur-shaik/vim-javacomplete2'
 autocmd FileType java setlocal shiftwidth=2 tabstop=2 omnifunc=javacomplete#Complete
+autocmd FileType java JCEnable
+let g:deoplete#sources.java=['jc', 'javacomplete2', 'file', 'buffer']
 
 " neoformat
 Plug 'sbdchd/neoformat'
