@@ -101,6 +101,10 @@ let g:vimtex_compiler_latexmk = {
   \  ],
   \}
 
+" nvim-typescript / yats.vim (typescript)
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript'
+
 call plug#end()
 
 source $HOME/.config/nvim/init.vim.local
