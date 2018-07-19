@@ -10,6 +10,9 @@ set autowrite
 " use incremental search
 set incsearch
 
+" clipboard sharing
+set clipboard+=unnamedplus
+
 " tab and indent setting
 set tabstop=4
 set shiftwidth=4
