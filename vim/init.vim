@@ -26,6 +26,9 @@ syntax on
 " disable mouse
 set mouse-=a
 
+" draw the signcolumn always
+set signcolumn=yes
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 " vim-gitgutter & vim-fugitive
@@ -52,20 +55,8 @@ let g:deoplete#auto_complete_start_length=2
 let g:deoplete#sources={}
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-" vim-javacomplete2
-Plug 'artur-shaik/vim-javacomplete2'
-autocmd FileType java setlocal shiftwidth=2 tabstop=2 omnifunc=javacomplete#Complete
-autocmd FileType java JCEnable
-let g:deoplete#sources.java=['jc', 'javacomplete2', 'file', 'buffer']
-
 " neoformat
 Plug 'sbdchd/neoformat'
-let g:neoformat_java_google = {
-    \ 'exe': 'java',
-    \ 'args': ['-jar ~/.local/share/nvim/external-tools/google-java-format-1.5-all-deps.jar', '-'],
-    \ 'stdin': 1,
-    \ }
-let g:neoformat_enabled_java = ['google']
 
 " configuration for xml
 autocmd FileType xml setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
@@ -104,6 +95,31 @@ let g:vimtex_compiler_latexmk = {
 " nvim-typescript / yats.vim (typescript)
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript'
+
+" LanguageClient-neovim
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh',
+  \ }
+let g:LanguageClient_autoStart=1
+let g:LanguageClient_serverCommands={}
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <leader>g :call LanguageClient#textDocument_definition()<CR>
+nnoremap <leader>rr :call LanguageClient#textDocument_rename()<CR>
+
+" Configuration for Java
+let g:LanguageClient_serverCommands.java=['jdt-ls']
+autocmd FileType java setlocal shiftwidth=2 tabstop=2
+let g:neoformat_java_google = {
+    \ 'exe': 'java',
+    \ 'args': ['-jar ~/.local/share/nvim/external-tools/google-java-format-1.5-all-deps.jar', '-'],
+    \ 'stdin': 1,
+    \ }
+let g:neoformat_enabled_java = ['google']
+
+" echodoc.vim (parameter doc)
+Plug 'Shougo/echodoc.vim'
 
 call plug#end()
 

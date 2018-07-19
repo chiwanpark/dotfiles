@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+case $( uname -s ) in
+  Linux) CONFIG_NAME=config_linux;;
+  Darwin) CONFIG_NAME=config_mac;;
+esac
+
+java \
+  -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044 \
+  -Declipse.application=org.eclipse.jdt.ls.core.id1 \
+  -Dosgi.bundles.defaultStartLevel=4 \
+  -Declipse.product=org.eclipse.jdt.ls.core.product \
+  -Dlog.level=ALL \
+  -noverify \
+  -Xmx4G \
+  -jar $HOME/.local/share/nvim/external-tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1*.jar \
+  -configuration $HOME/.local/share/nvim/external-tools/jdt-language-server/$CONFIG_NAME \
+  -data /tmp/workspace \
+  "$@"
