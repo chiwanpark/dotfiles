@@ -124,6 +124,9 @@ let g:neoformat_enabled_java = ['google']
 " echodoc.vim (parameter doc)
 Plug 'Shougo/echodoc.vim'
 
+" fzf (fuzzy finder)
+Plug 'junegunn/fzf'
+
 call plug#end()
 
 source $HOME/.config/nvim/init.vim.local

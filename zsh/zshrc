@@ -30,3 +30,6 @@ alias proxy-dumbo-pregelix='ssh -p2123 dumbo.unist.ac.kr -N -L 16001:dumbo060:16
 
 # speedtest-cli
 alias speedtest-cli='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+
+# fzf
+source "$HOME/.dotfiles/zsh/fzf.zsh"
