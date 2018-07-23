@@ -12,6 +12,6 @@ config_fzf_macOS() {
 }
 
 case $( uname -s ) in
-  Linux) config_fzf_linux;;
+  Linux) config_fzf_Linux;;
   Darwin) config_fzf_macOS;;
 esac
