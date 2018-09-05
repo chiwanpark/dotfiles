@@ -61,8 +61,9 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " neoformat
 Plug 'sbdchd/neoformat'
 
-" configuration for xml
+" configuration for xml and html
 autocmd FileType xml setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
 
 " pydoc.vim (Python)
 Plug 'https://github.com/fs111/pydoc.vim.git'
