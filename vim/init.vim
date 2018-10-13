@@ -65,6 +65,10 @@ Plug 'sbdchd/neoformat'
 autocmd FileType xml setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
 
+" configuration for yaml
+autocmd FileType yml setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+
 " pydoc.vim (Python)
 Plug 'https://github.com/fs111/pydoc.vim.git'
 
