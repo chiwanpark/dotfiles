@@ -11,7 +11,7 @@ export EDITOR=nvim
 alias vi=nvim
 
 # PATH
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
 # ls command
 export CLICOLOR=1 # for Darwin
