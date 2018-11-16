@@ -1,6 +1,13 @@
 config_fzf_Linux() {
-  source /usr/share/fzf/completion.zsh
-  source /usr/share/fzf/key-bindings.zsh
+  if [ -d "$HOME/.fzf" ]; then
+    source $HOME/.fzf/shell/completion.zsh
+    source $HOME/.fzf/shell/key-bindings.zsh
+  fi
+
+  if [ -d "/usr/share/fzf" ]; then
+    source /usr/share/fzf/completion.zsh
+    source /usr/share/fzf/key-bindings.zsh
+  fi
 }
 
 config_fzf_macOS() {
