@@ -99,6 +99,7 @@ let g:vimtex_compiler_latexmk = {
   \     '--interaction=nonstopmode',
   \  ],
   \}
+let g:tex_flavor='latex'
 
 " nvim-typescript / yats.vim (typescript)
 Plug 'HerringtonDarkholme/yats.vim'
