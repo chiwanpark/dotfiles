@@ -33,3 +33,8 @@ alias speedtest-cli='curl -s https://raw.githubusercontent.com/sivel/speedtest-c
 
 # fzf
 source "$HOME/.dotfiles/zsh/fzf.zsh"
+
+if [ -d "$HOME/.local/google-cloud-sdk" ]; then
+    source "$HOME/.local/google-cloud-sdk/completion.zsh.inc"
+    source "$HOME/.local/google-cloud-sdk/path.zsh.inc"
+fi
