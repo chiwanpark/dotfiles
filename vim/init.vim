@@ -127,6 +127,9 @@ let g:neoformat_java_google = {
     \ }
 let g:neoformat_enabled_java = ['google']
 
+" Configuration for PHP
+autocmd FileType php setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
+
 " echodoc.vim (parameter doc)
 Plug 'Shougo/echodoc.vim'
 
