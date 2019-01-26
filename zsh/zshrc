@@ -38,3 +38,8 @@ if [ -d "$HOME/.local/google-cloud-sdk" ]; then
     source "$HOME/.local/google-cloud-sdk/completion.zsh.inc"
     source "$HOME/.local/google-cloud-sdk/path.zsh.inc"
 fi
+
+# rbenv
+if [ -x "$(command -v rbenv)" ]; then
+    eval "$(rbenv init -)"
+fi
