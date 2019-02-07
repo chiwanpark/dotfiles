@@ -32,6 +32,8 @@ alias proxy-dumbo-pregelix='ssh -p2123 dumbo.unist.ac.kr -N -L 16001:dumbo060:16
 # speedtest-cli
 alias speedtest-cli='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 
+alias temperature='for i in 0 1 2 3 4 5 6; do cat /sys/devices/virtual/thermal/thermal_zone${i}/temp; done'
+
 # fzf
 source "$HOME/.dotfiles/zsh/fzf.zsh"
 
