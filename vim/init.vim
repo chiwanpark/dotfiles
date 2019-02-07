@@ -133,6 +133,10 @@ autocmd FileType php setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#Comple
 " Configuration for Julia
 Plug 'JuliaEditorSupport/julia-vim'
 
+" scss.vim (SCSS)
+Plug 'ObserverOfTime/scss.vim', {'for': 'scss'}
+autocmd FileType scss setlocal shiftwidth=2 tabstop=2
+
 " echodoc.vim (parameter doc)
 Plug 'Shougo/echodoc.vim'
 
