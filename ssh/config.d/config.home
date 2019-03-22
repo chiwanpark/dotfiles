@@ -1,17 +1,13 @@
-Host box
-    HostName box.chiwanpark.com
-    User chiwanpark
-
-Host mars
-    HostName mars.chiwanpark.com
-    User chiwanpark
-
 Host hq
     HostName hq.chiwanpark.com
     User root
 
-Host nuc
-    HostName nuc.chiwanpark.com
+Host home
+    HostName home.chiwanpark.com
+    User chiwanpark
+
+Host cluster
+    HostName cluster.chiwanpark.com
     User chiwanpark
 
 Host dumbo
@@ -19,22 +15,7 @@ Host dumbo
     Port 2123
     User chiwanpark
 
-Host datalab
-    HostName datalab.snu.ac.kr
-    Port 2222
-    User chiwanpark
-
-Host matisse
-    HostName matisse.snu.ac.kr
-    Port 2222
-    User chiwanpark
-
-Host monet
-    HostName monet.snu.ac.kr
-    Port 2222
-    User chiwanpark
-
-Host gogh
-    HostName gogh.snu.ac.kr
-    Port 2222
+Host chagall
+    HostName chagall.snu.ac.kr
+    Port 9999
     User chiwanpark
