@@ -20,7 +20,7 @@ alias ll='ls -lh'
 
 # ssh proxy
 alias proxy-box='ssh -C2qTnN -p2123 -D 8111 box.chiwanpark.com'
-alias proxy-snu='ssh -C2qTnN -D 8111 -p2222 datalab.snu.ac.kr'
+alias proxy-snu='ssh -C2qTnN -D 8111 -p9999 chagall.snu.ac.kr'
 alias proxy-nuc='ssh -C2qTnN -D 8111 nuc.chiwanpark.com'
 alias proxy-snu-yarn='ssh -p2222 matisse.snu.ac.kr -N -L 8088:matisse.snu.ac.kr:8088'
 alias proxy-dumbo-yarn='ssh -p2123 dumbo.unist.ac.kr -N -L 8088:dumbo060:8088'
