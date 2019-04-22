@@ -25,12 +25,16 @@
     ~/.pip/pip.conf:
       force: true
       create: true
-      path: pip/pip.conf
+      path: python/pip.conf
+    ~/.config/flake8:
+      force: true
+      create: true
+      path: python/flake8.conf
     ~/.local/bin/jdt-ls:
       force: true
       create: true
       path: vim/jdt-ls
-
+    
 - shell:
     - command: [git pull, Updating dotfiles...]
       stdout: true
