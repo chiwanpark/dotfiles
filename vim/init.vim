@@ -61,6 +61,9 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " neoformat
 Plug 'sbdchd/neoformat'
 
+" neomake
+Plug 'neomake/neomake'
+
 " configuration for xml and html
 autocmd FileType xml setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
@@ -78,13 +81,6 @@ Plug 'zchee/deoplete-jedi'
 " jedi-vim (Python)
 Plug 'davidhalter/jedi-vim'
 let g:jedi#completions_enabled=0
-
-" python-mode (Python)
-Plug 'python-mode/python-mode', {'branch': 'develop'}
-set foldlevel=99
-let g:pymode_options_colorcolumn=0
-let g:pymode_lint_ignore=["E501", "E402"]
-let g:pymode_rope=0
 
 " vimtex (LaTeX)
 Plug 'lervag/vimtex'
@@ -118,6 +114,7 @@ nnoremap <leader>g :call LanguageClient#textDocument_definition()<CR>
 nnoremap <leader>rr :call LanguageClient#textDocument_rename()<CR>
 
 " Configuration for Java
+let g:LanguageClient_diagnosticsEnable=0 " temporarily disable diagnostics for all languages
 let g:LanguageClient_serverCommands.java=['jdt-ls']
 autocmd FileType java setlocal shiftwidth=2 tabstop=2
 let g:neoformat_java_google = {
@@ -133,8 +130,8 @@ autocmd FileType php setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#Comple
 " Configuration for Julia
 Plug 'JuliaEditorSupport/julia-vim'
 
-" scss.vim (SCSS)
-Plug 'ObserverOfTime/scss.vim', {'for': 'scss'}
+" scss-syntax.vim (SCSS)
+Plug 'cakebaker/scss-syntax.vim'
 autocmd FileType scss setlocal shiftwidth=2 tabstop=2
 
 " echodoc.vim (parameter doc)
@@ -144,5 +141,8 @@ Plug 'Shougo/echodoc.vim'
 Plug 'junegunn/fzf'
 
 call plug#end()
+
+" neomake setting
+call neomake#configure#automake('rw', 1000)
 
 source $HOME/.config/nvim/init.vim.local
