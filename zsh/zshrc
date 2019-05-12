@@ -46,3 +46,8 @@ fi
 if [ -x "$(command -v rbenv)" ]; then
     eval "$(rbenv init -)"
 fi
+
+# import local zsh confiuration
+if [[ -f "$HOME/.dotfiles/zsh/zshrc.local" ]]; then
+    source "$HOME/.dotfiles/zsh/zshrc.local"
+fi
