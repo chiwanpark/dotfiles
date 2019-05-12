@@ -30,10 +30,10 @@ alias proxy-dumbo-mrhistory='ssh -p2123 dumbo.unist.ac.kr -N -L 19888:dumbo060:1
 alias proxy-dumbo-nodemanager='ssh -p2123 dumbo.unist.ac.kr -N -L 8042:dumbo060:8042'
 alias proxy-dumbo-pregelix='ssh -p2123 dumbo.unist.ac.kr -N -L 16001:dumbo060:16001'
 
-# speedtest-cli
+# custom command (t480s)
 alias speedtest-cli='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-
 alias temperature='for i in 0 1 2 3 4 5 6; do cat /sys/devices/virtual/thermal/thermal_zone${i}/temp; done'
+alias rdp='xfreerdp /v:home.chiwanpark.com /rfx /rfx-mode:video +aero /bpp:24 +fonts /f /compression /compression-level:2 /sound /sec:nla +window-drag /gdi:hw /gfx-h264 /codec-cache:rfx /video /multimedia:sys:oss,decoder:ffmpeg /network:lan /monitors:0'
 
 # fzf
 source "$HOME/.dotfiles/zsh/fzf.zsh"
