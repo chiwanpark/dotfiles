@@ -19,3 +19,8 @@ Host chagall
     HostName chagall.snu.ac.kr
     Port 9999
     User chiwanpark
+
+Host matisse
+    HostName matisse.snu.ac.kr
+    Port 2222
+    User chiwanpark
