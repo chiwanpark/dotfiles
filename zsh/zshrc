@@ -20,9 +20,7 @@ ls --color=auto &> /dev/null && alias ls='ls --color=auto'
 alias ll='ls -lh'
 
 # ssh proxy
-alias proxy-box='ssh -C2qTnN -p2123 -D 8111 box.chiwanpark.com'
-alias proxy-snu='ssh -C2qTnN -D 8111 -p9999 chagall.snu.ac.kr'
-alias proxy-nuc='ssh -C2qTnN -D 8111 nuc.chiwanpark.com'
+alias proxy-snu='ssh -C2qTnN -D 8111 mimosa.snu.ac.kr'
 alias proxy-snu-yarn='ssh -p2222 matisse.snu.ac.kr -N -L 8088:matisse.snu.ac.kr:8088'
 alias proxy-dumbo-yarn='ssh -p2123 dumbo.unist.ac.kr -N -L 8088:dumbo060:8088'
 alias proxy-dumbo-hdfs='ssh -p2123 dumbo.unist.ac.kr -N -L 50070:dumbo060:50070'
@@ -52,3 +50,6 @@ fi
 if [[ -f "$HOME/.dotfiles/zsh/zshrc.local" ]]; then
     source "$HOME/.dotfiles/zsh/zshrc.local"
 fi
+
+# iterm2 integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
