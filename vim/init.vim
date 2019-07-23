@@ -140,6 +140,9 @@ Plug 'Shougo/echodoc.vim'
 " fzf (fuzzy finder)
 Plug 'junegunn/fzf'
 
+" nerdcommenter
+Plug 'scrooloose/nerdcommenter'
+
 call plug#end()
 
 " neomake setting
