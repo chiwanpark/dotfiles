@@ -30,10 +30,6 @@
       force: true
       create: true
       path: python/flake8.conf
-    ~/.local/bin/jdt-ls:
-      force: true
-      create: true
-      path: vim/jdt-ls
     
 - shell:
     - command: [git pull, Updating dotfiles...]
@@ -49,9 +45,6 @@
       stdout: true
       stderr: true
     - command: ['curl -fLo ~/.local/share/nvim/external-tools/google-java-format-1.5-all-deps.jar --create-dirs https://github.com/google/google-java-format/releases/download/google-java-format-1.5/google-java-format-1.5-all-deps.jar', Downloading google-java-format...]
-      stdout: true
-      stderr: true
-    - command: ['mkdir -p ~/.local/share/nvim/external-tools/jdt-language-server && curl -L http://mirror.kakao.com/eclipse/jdtls/snapshots/jdt-language-server-latest.tar.gz | tar xz -C ~/.local/share/nvim/external-tools/jdt-language-server', Downloading JDT server...]
       stdout: true
       stderr: true
     - command: [touch ~/.config/nvim/init.vim.local, Creating local vim configuration file...]

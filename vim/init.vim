@@ -108,15 +108,15 @@ Plug 'autozimu/LanguageClient-neovim', {
   \ }
 let g:LanguageClient_autoStart=1
 let g:LanguageClient_serverCommands={}
+let g:LanguageClient_diagnosticsEnable=0 " temporarily disable diagnostics for all languages
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <leader>g :call LanguageClient#textDocument_definition()<CR>
 nnoremap <leader>rr :call LanguageClient#textDocument_rename()<CR>
 
 " Configuration for Java
-let g:LanguageClient_diagnosticsEnable=0 " temporarily disable diagnostics for all languages
-let g:LanguageClient_serverCommands.java=['jdt-ls']
-autocmd FileType java setlocal shiftwidth=2 tabstop=2
+Plug 'artur-shaik/vim-javacomplete2'
+autocmd FileType java setlocal shiftwidth=2 tabstop=2 omnifunc=javacomplete#Complete
 let g:neoformat_java_google = {
     \ 'exe': 'java',
     \ 'args': ['-jar ~/.local/share/nvim/external-tools/google-java-format-1.5-all-deps.jar', '-'],
