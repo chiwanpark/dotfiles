@@ -6,9 +6,9 @@ Host home
     HostName home.chiwanpark.com
     User chiwanpark
 
-Host cluster
-    HostName cluster.chiwanpark.com
-    User chiwanpark
+Host gateway
+    HostName gateway.chiwanpark.com
+    User alarm
 
 Host dumbo
     HostName dumbo.unist.ac.kr
