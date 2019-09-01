@@ -87,7 +87,6 @@ Plug 'lervag/vimtex'
 autocmd FileType tex setlocal shiftwidth=2 tabstop=2
 let g:vimtex_compiler_latexmk = {
   \ 'options': [
-  \     '-pdf',
   \     '-verbose',
   \     '-bibtex',
   \     '-file-line-error',
