@@ -10,6 +10,10 @@ Host gateway
     HostName gateway.chiwanpark.com
     User alarm
 
+Host graphql
+    HostName graphql.chiwanpark.com
+    User chiwanpark
+
 Host dumbo
     HostName dumbo.unist.ac.kr
     Port 2123
