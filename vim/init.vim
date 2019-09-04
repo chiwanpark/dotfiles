@@ -114,6 +114,8 @@ nnoremap <leader>g :call LanguageClient#textDocument_definition()<CR>
 nnoremap <leader>rr :call LanguageClient#textDocument_rename()<CR>
 
 " Configuration for Java
+"
+let g:JavaComplete_ClasspathGenerationOrder = ['Maven', 'Eclipse', 'Gradle', 'Ant']
 Plug 'artur-shaik/vim-javacomplete2'
 autocmd FileType java setlocal shiftwidth=2 tabstop=2 omnifunc=javacomplete#Complete
 let g:neoformat_java_google = {
