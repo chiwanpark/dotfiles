@@ -99,6 +99,8 @@ let g:tex_flavor='latex'
 " nvim-typescript / yats.vim (typescript)
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript'
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType typescript setlocal shiftwidth=2 tabstop=2
 
 " LanguageClient-neovim
 Plug 'autozimu/LanguageClient-neovim', {
@@ -118,12 +120,6 @@ nnoremap <leader>rr :call LanguageClient#textDocument_rename()<CR>
 let g:JavaComplete_ClasspathGenerationOrder = ['Maven', 'Eclipse', 'Gradle', 'Ant']
 Plug 'artur-shaik/vim-javacomplete2'
 autocmd FileType java setlocal shiftwidth=2 tabstop=2 omnifunc=javacomplete#Complete
-let g:neoformat_java_google = {
-    \ 'exe': 'java',
-    \ 'args': ['-jar ~/.local/share/nvim/external-tools/google-java-format-1.5-all-deps.jar', '-'],
-    \ 'stdin': 1,
-    \ }
-let g:neoformat_enabled_java = ['google']
 
 " Configuration for PHP
 autocmd FileType php setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
