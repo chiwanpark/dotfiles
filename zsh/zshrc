@@ -52,5 +52,10 @@ if [[ -f "$HOME/.dotfiles/zsh/zshrc.local" ]]; then
     source "$HOME/.dotfiles/zsh/zshrc.local"
 fi
 
+# kubectl autocompletion
+if [ -x "$(command -v kubectl)" ]; then
+    source <(kubectl completion zsh)
+fi
+
 # iterm2 integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
