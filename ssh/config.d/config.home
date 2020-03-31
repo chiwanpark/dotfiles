@@ -6,9 +6,13 @@ Host home
     HostName home.chiwanpark.com
     User chiwanpark
 
-Host gateway
-    HostName gateway.chiwanpark.com
-    User alarm
+Host workspace
+    HostName workspace.chiwanpark.com
+    User chiwanpark
+
+Host npi
+    HostName 192.168.1.99
+    User chiwanpark
 
 Host graphql
     HostName graphql.chiwanpark.com
