@@ -151,6 +151,15 @@ call plug#end()
 " neomake setting
 call neomake#configure#automake('rw', 1000)
 
+" colorscheme
+if (empty($TMUX))
+  if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
 colorscheme onedark
 
 source $HOME/.config/nvim/init.vim.local
