@@ -151,4 +151,6 @@ call plug#end()
 " neomake setting
 call neomake#configure#automake('rw', 1000)
 
+colorscheme onedark
+
 source $HOME/.config/nvim/init.vim.local
