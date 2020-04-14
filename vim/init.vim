@@ -34,6 +34,9 @@ set signcolumn=yes
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+" onedark.vim
+Plug 'joshdick/onedark.vim'
+
 " vim-gitgutter & vim-fugitive
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -43,6 +46,7 @@ Plug 'tpope/vim-surround'
 
 " vim-airline
 Plug 'bling/vim-airline'
+let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline#extensions#tabline#buffer_nr_show=1
