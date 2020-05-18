@@ -9,6 +9,8 @@ All files should be installed with the script.
 * neovim
 * tmux
 * ssh
+* pip
+* Karabiner-Elements
 
 = Usage
 
@@ -17,6 +19,13 @@ All files should be installed with the script.
 $ git clone https://github.com/chiwanpark/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
 $ ./install
+----
+
+For Karabiner-Elements configuration, type the following commands:
+
+[source,sh]
+----
+$ ln -s ~/.dotfiles/karabiner/complex.json ~/.config/karabiner/assets/complex_modifications/complex.json
 ----
 
 = License
