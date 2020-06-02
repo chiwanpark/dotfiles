@@ -1,12 +1,24 @@
 config_fzf_Linux() {
-  if [ -d "$HOME/.fzf" ]; then
-    source $HOME/.fzf/shell/completion.zsh
-    source $HOME/.fzf/shell/key-bindings.zsh
+  if [ -d "/usr/share/fzf" ]; then
+    FZF_ROOT="/usr/share/fzf"
+  elif [ -d "$HOME/.fzf" ]; then
+    FZF_ROOT="$HOME/.fzf"
+  fi
+  
+  if [ -d "$FZF_ROOT/shell" ]; then
+    FZF_ROOT="$FZF_ROOT/shell"
   fi
 
-  if [ -d "/usr/share/fzf" ]; then
-    source /usr/share/fzf/completion.zsh
-    source /usr/share/fzf/key-bindings.zsh
+  if [ -f "$FZF_ROOT/completion.zsh" ]; then
+    source $FZF_ROOT/completion.zsh
+  fi
+  if [ -f "$FZF_ROOT/key-bindings.zsh" ]; then
+    source $FZF_ROOT/key-bindings.zsh
+  fi
+
+  # fedora specific script load
+  if [ -f "/usr/share/zsh/site-functions/fzf" ]; then
+    source /usr/share/zsh/site-functions/fzf
   fi
 }
 
