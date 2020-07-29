@@ -20,13 +20,13 @@ ls --color=auto &> /dev/null && alias ls='ls --color=auto'
 alias ll='ls -lh'
 
 # ssh proxy
-alias proxy-snu='ssh -C2qTnN -D 8111 mimosa.snu.ac.kr'
-alias proxy-snu-yarn='ssh -p2222 matisse.snu.ac.kr -N -L 8088:matisse.snu.ac.kr:8088'
-alias proxy-dumbo-yarn='ssh -p2123 dumbo.unist.ac.kr -N -L 8088:dumbo060:8088'
-alias proxy-dumbo-hdfs='ssh -p2123 dumbo.unist.ac.kr -N -L 50070:dumbo060:50070'
-alias proxy-dumbo-mrhistory='ssh -p2123 dumbo.unist.ac.kr -N -L 19888:dumbo060:19888'
-alias proxy-dumbo-nodemanager='ssh -p2123 dumbo.unist.ac.kr -N -L 8042:dumbo060:8042'
-alias proxy-dumbo-pregelix='ssh -p2123 dumbo.unist.ac.kr -N -L 16001:dumbo060:16001'
+alias proxy-snu='ssh -C2qTnN -D 8111 chiwanpark@mimosa.snu.ac.kr'
+alias proxy-snu-yarn='ssh -p2222 chiwanpark@matisse.snu.ac.kr -N -L 8088:matisse.snu.ac.kr:8088'
+alias proxy-dumbo-yarn='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 8088:dumbo060:8088'
+alias proxy-dumbo-hdfs='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 50070:dumbo060:50070'
+alias proxy-dumbo-mrhistory='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 19888:dumbo060:19888'
+alias proxy-dumbo-nodemanager='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 8042:dumbo060:8042'
+alias proxy-dumbo-pregelix='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 16001:dumbo060:16001'
 
 # custom command (t480s)
 alias speedtest-cli='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
