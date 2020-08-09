@@ -7,11 +7,15 @@ Host home
     User chiwanpark
 
 Host workspace
-    HostName workspace.chiwanpark.com
+    HostName 192.168.1.23
     User chiwanpark
 
+Host gate
+    HostName gate.chiwanpark.com
+    User pi
+
 Host npi
-    HostName 192.168.1.99
+    HostName npi.chiwanpark.com
     User chiwanpark
 
 Host graphql
