@@ -30,6 +30,14 @@
       force: true
       create: true
       path: python/flake8.conf
+    ~/.config/onedrive/config:
+      force: true
+      create: true
+      path: onedrive/config
+    ~/.config/onedrive/sync_list:
+      force: true
+      create: true
+      path: onedrive/sync_list
     
 - shell:
     - command: [git pull, Updating dotfiles...]
