@@ -102,11 +102,8 @@ let g:vimtex_compiler_latexmk = {
   \}
 let g:tex_flavor='latex'
 
-" nvim-typescript / yats.vim (typescript)
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript'
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-autocmd FileType typescript setlocal shiftwidth=2 tabstop=2
+" jsx
+Plug 'mxw/vim-jsx'
 
 " LanguageClient-neovim
 Plug 'autozimu/LanguageClient-neovim', {
