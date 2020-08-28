@@ -102,8 +102,12 @@ let g:vimtex_compiler_latexmk = {
   \}
 let g:tex_flavor='latex'
 
-" jsx
+" javascript/jsx
+Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript.jsx setlocal shiftwidth=2 tabstop=2
 
 " LanguageClient-neovim
 Plug 'autozimu/LanguageClient-neovim', {
