@@ -32,11 +32,10 @@ alias proxy-dumbo-pregelix='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 16001:
 alias speedtest-cli='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias temperature='for i in 0 1 2 3 4 5 6; do cat /sys/devices/virtual/thermal/thermal_zone${i}/temp; done'
 alias phone='scrcpy -Sw'
-alias rdp='xfreerdp /v:home.chiwanpark.com /rfx /rfx-mode:video +aero /bpp:24 +fonts /f /compression /compression-level:2 /sound /sec:nla +window-drag /gdi:hw /gfx-h264 /codec-cache:rfx /video /multimedia:sys:oss,decoder:ffmpeg /network:lan /monitors:0 /dynamic-resolution'
 alias fixpdf='LANG=C LC_ALL=C sed -i s"|/Registry (Adobe) /Ordering (Korea1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g"'
 
 # fzf
-source "$HOME/.dotfiles/zsh/fzf.zsh"
+source "$HOME/.config/zsh/fzf.zsh"
 
 if [ -d "$HOME/.local/google-cloud-sdk" ]; then
     source "$HOME/.local/google-cloud-sdk/completion.zsh.inc"
@@ -49,8 +48,8 @@ if [ -x "$(command -v rbenv)" ]; then
 fi
 
 # import local zsh confiuration
-if [[ -f "$HOME/.dotfiles/zsh/zshrc.local" ]]; then
-    source "$HOME/.dotfiles/zsh/zshrc.local"
+if [[ -f "$HOME/.config/zsh/zshrc.local" ]]; then
+    source "$HOME/.config/zsh/zshrc.local"
 fi
 
 # kubectl autocompletion
