@@ -1,5 +1,5 @@
-Host hq
-    HostName hq.chiwanpark.com
+Host proxy
+    HostName proxy.chiwanpark.com
     User root
 
 Host home
