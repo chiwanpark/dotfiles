@@ -4,7 +4,11 @@ config_fzf_Linux() {
   elif [ -d "$HOME/.fzf" ]; then
     FZF_ROOT="$HOME/.fzf"
   fi
-  
+
+  if [[ ! "$PATH" == "*$HOME/.fzf/bin*" ]]; then
+    export PATH="$PATH:$HOME/.fzf/bin"
+  fi
+
   if [ -d "$FZF_ROOT/shell" ]; then
     FZF_ROOT="$FZF_ROOT/shell"
   fi
