@@ -58,11 +58,6 @@ map <Leader>nt <ESC>:NERDTreeToggle<CR>
 
 " deoplete.nvim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup=1
-let g:deoplete#enable_smart_case=1
-let g:deoplete#auto_complete_start_length=2
-let g:deoplete#sources={}
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " neoformat
 Plug 'sbdchd/neoformat'
@@ -149,8 +144,18 @@ Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
 
+" deoplete.nvim setting
+call deoplete#custom#option({
+\ 'smart_case': v:true,
+\ 'sources': {},
+\ 'min_pattern_length': 2
+\ })
+let g:deoplete#enable_at_startup=1
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
 " neomake setting
 call neomake#configure#automake('rw', 1000)
+let g:neomake_python_enabled_makers = ['flake8']
 
 " colorscheme
 if (has("nvim"))
