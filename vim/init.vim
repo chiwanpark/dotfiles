@@ -79,10 +79,6 @@ Plug 'https://github.com/fs111/pydoc.vim.git'
 " deoplete-jedi (Python)
 Plug 'zchee/deoplete-jedi'
 
-" jedi-vim (Python)
-Plug 'davidhalter/jedi-vim'
-let g:jedi#completions_enabled=0
-
 " vimtex (LaTeX)
 Plug 'lervag/vimtex'
 autocmd FileType tex setlocal shiftwidth=2 tabstop=2
