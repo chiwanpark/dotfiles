@@ -56,81 +56,9 @@ let g:airline#extensions#tabline#buffer_nr_format='%s:'
 Plug 'scrooloose/nerdtree'
 map <Leader>nt <ESC>:NERDTreeToggle<CR>
 
-" deoplete.nvim
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-" neoformat
-Plug 'sbdchd/neoformat'
-
-" neomake
-Plug 'neomake/neomake'
-
-" configuration for xml and html
-autocmd FileType xml setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
-
 " configuration for yaml
 autocmd FileType yml setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
-
-" pydoc.vim (Python)
-Plug 'https://github.com/fs111/pydoc.vim.git'
-
-" deoplete-jedi (Python)
-Plug 'zchee/deoplete-jedi'
-
-" vimtex (LaTeX)
-Plug 'lervag/vimtex'
-autocmd FileType tex setlocal shiftwidth=2 tabstop=2
-let g:vimtex_compiler_latexmk = {
-  \ 'options': [
-  \     '-verbose',
-  \     '-bibtex',
-  \     '-file-line-error',
-  \     '-synctex=1',
-  \     '--interaction=nonstopmode',
-  \  ],
-  \}
-let g:tex_flavor='latex'
-
-" javascript/jsx
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-autocmd FileType javascript.jsx setlocal shiftwidth=2 tabstop=2
-
-" LanguageClient-neovim
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \ }
-let g:LanguageClient_autoStart=1
-let g:LanguageClient_serverCommands={}
-let g:LanguageClient_diagnosticsEnable=0 " temporarily disable diagnostics for all languages
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <leader>g :call LanguageClient#textDocument_definition()<CR>
-nnoremap <leader>rr :call LanguageClient#textDocument_rename()<CR>
-
-" Configuration for Java
-"
-let g:JavaComplete_ClasspathGenerationOrder = ['Maven', 'Eclipse', 'Gradle', 'Ant']
-Plug 'artur-shaik/vim-javacomplete2'
-autocmd FileType java setlocal shiftwidth=2 tabstop=2 omnifunc=javacomplete#Complete
-
-" Configuration for PHP
-autocmd FileType php setlocal shiftwidth=2 tabstop=2 omnifunc=xmlcomplete#CompleteTags
-
-" Configuration for Julia
-Plug 'JuliaEditorSupport/julia-vim'
-
-" scss-syntax.vim (SCSS)
-Plug 'cakebaker/scss-syntax.vim'
-autocmd FileType scss setlocal shiftwidth=2 tabstop=2
-
-" echodoc.vim (parameter doc)
-Plug 'Shougo/echodoc.vim'
 
 " fzf (fuzzy finder)
 Plug 'junegunn/fzf'
@@ -138,20 +66,64 @@ Plug 'junegunn/fzf'
 " nerdcommenter
 Plug 'scrooloose/nerdcommenter'
 
+" vim-cpp-modern (Modern C++ syntax highlighting)
+Plug 'bfrg/vim-cpp-modern'
+
+" vim-lsp (Language Server Protocol)
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
 call plug#end()
 
-" deoplete.nvim setting
-call deoplete#custom#option({
-\ 'smart_case': v:true,
-\ 'sources': {},
-\ 'min_pattern_length': 2
-\ })
-let g:deoplete#enable_at_startup=1
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" lsp handler
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    inoremap <expr> <Tab> pumvisible() ? '<C-n>' : '<Tab>'
+    inoremap <expr> <S-Tab> pumvisible() ? '<C-p>' : '<S-Tab>'
+    inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : '<cr>'
+    nmap <buffer> <leader>gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>gd <plug>(lsp-definition)
+    nmap <buffer> <leader>gi <plug>(lsp-implementation)
+    nmap <buffer> <leader>rr <plug>(lsp-rename)
+    nmap <buffer> <leader>k <plug>(lsp-hover)
+    nmap <buffer> <leader>p <plug>(lsp-code-action)
+endfunction
 
-" neomake setting
-call neomake#configure#automake('rw', 1000)
-let g:neomake_python_enabled_makers = ['flake8']
+" pyls
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
+" clangd
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd']},
+        \ 'allowlist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
+
+" typescript-language-server for javascript
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server-js',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+        \ 'whitelist': ['javascript', 'javascript.jsx'],
+        \ })
+endif
+
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 
 " colorscheme
 if (has("nvim"))
