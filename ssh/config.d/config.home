@@ -14,6 +14,10 @@ Host gate
     HostName gate.chiwanpark.com
     User pi
 
+Host desk
+    HostName desk.chiwanpark.com
+    User chiwanpark
+
 Host npi
     HostName npi.chiwanpark.com
     User chiwanpark
