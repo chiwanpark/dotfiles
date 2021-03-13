@@ -31,8 +31,11 @@ alias proxy-dumbo-pregelix='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 16001:
 # custom command (t480s)
 alias speedtest-cli='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias temperature='for i in 0 1 2 3 4 5 6; do cat /sys/devices/virtual/thermal/thermal_zone${i}/temp; done'
-alias phone='scrcpy -Sw'
 alias fixpdf='LANG=C LC_ALL=C sed -i s"|/Registry (Adobe) /Ordering (Korea1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g"'
+phone() {
+    adb connect 192.168.1.9:$1;
+    scrcpy -Sw;
+}
 
 # fzf
 source "$HOME/.config/zsh/fzf.zsh"
