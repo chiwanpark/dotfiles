@@ -84,7 +84,7 @@ function! s:on_lsp_buffer_enabled() abort
     inoremap <expr> <Tab> pumvisible() ? '<C-n>' : '<Tab>'
     inoremap <expr> <S-Tab> pumvisible() ? '<C-p>' : '<S-Tab>'
     inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : '<cr>'
-    nmap <buffer> <leader>g <plug>(lsp-definition)
+    nmap <buffer> <leader>gd <plug>(lsp-definition)
     nmap <buffer> <leader>gt <plug>(lsp-type-definition)
     nmap <buffer> <leader>gi <plug>(lsp-implementation)
     nmap <buffer> <leader>rr <plug>(lsp-rename)
