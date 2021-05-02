@@ -87,7 +87,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> <leader>gd <plug>(lsp-definition)
     nmap <buffer> <leader>gt <plug>(lsp-type-definition)
     nmap <buffer> <leader>gi <plug>(lsp-implementation)
-    nmap <buffer> <leader>rr <plug>(lsp-rename)
+    nmap <buffer> <leader>gr <plug>(lsp-rename)
     nmap <buffer> <leader>k <plug>(lsp-hover)
     nmap <buffer> <leader>p <plug>(lsp-code-action)
 endfunction
