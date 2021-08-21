@@ -75,6 +75,10 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
+" flutter and dart
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
+
 call plug#end()
 
 " lsp handler
@@ -118,6 +122,15 @@ if executable('typescript-language-server')
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
         \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
         \ 'whitelist': ['javascript', 'javascript.jsx'],
+        \ })
+endif
+
+" language server for flutter
+if executable('flutter')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'dart_ls',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, '/opt/flutter/bin/cache/dart-sdk/bin/dart /opt/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot --lsp --client-id vim']},
+        \ 'allowlist': ['dart'],
         \ })
 endif
 
