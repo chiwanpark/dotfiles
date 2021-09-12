@@ -1,29 +1,9 @@
-Host proxy
-    HostName proxy.chiwanpark.com
-    User root
-
-Host home
-    HostName home.chiwanpark.com
-    User chiwanpark
-
-Host workspace
-    HostName 192.168.1.23
-    User chiwanpark
-
-Host gate
-    HostName gate.chiwanpark.com
-    User pi
-
 Host desk
     HostName desk.chiwanpark.com
     User chiwanpark
 
-Host npi
-    HostName npi.chiwanpark.com
-    User chiwanpark
-
-Host graphql
-    HostName graphql.chiwanpark.com
+Host desk-local
+    HostName 192.168.1.31
     User chiwanpark
 
 Host dumbo
