@@ -124,6 +124,7 @@ if executable('typescript-language-server')
         \ 'whitelist': ['javascript', 'javascript.jsx'],
         \ })
 endif
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
 " language server for flutter
 if executable('flutter')
@@ -133,6 +134,7 @@ if executable('flutter')
         \ 'allowlist': ['dart'],
         \ })
 endif
+let g:dart_style_guide=2
 
 augroup lsp_install
     au!
