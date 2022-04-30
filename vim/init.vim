@@ -56,6 +56,10 @@ let g:airline#extensions#tabline#buffer_nr_format='%s:'
 Plug 'scrooloose/nerdtree'
 map <Leader>nt <ESC>:NERDTreeToggle<CR>
 
+" configuration for html/css
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType css setlocal shiftwidth=2 tabstop=2
+
 " configuration for yaml
 autocmd FileType yml setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
