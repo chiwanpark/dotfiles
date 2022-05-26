@@ -100,13 +100,13 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> <leader>p <plug>(lsp-code-action)
 endfunction
 
-" pyls
-if executable('pyls')
+" pylsp
+if executable('pylsp')
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
+        \ 'name': 'pylsp',
+        \ 'cmd': {server_info->['pylsp']},
         \ 'allowlist': ['python'],
-        \ 'workspace_config': {'pyls': {'configurationSources': ['flake8']}}
+        \ 'workspace_config': {'pylsp': {'configurationSources': ['flake8']}}
         \ })
 endif
 
