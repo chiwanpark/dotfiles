@@ -21,21 +21,10 @@ alias ll='ls -lh'
 
 # ssh proxy
 alias proxy-snu='ssh -C2qTnN -D 8111 chiwanpark@mimosa.snu.ac.kr'
-alias proxy-snu-yarn='ssh -p2222 chiwanpark@matisse.snu.ac.kr -N -L 8088:matisse.snu.ac.kr:8088'
-alias proxy-dumbo-yarn='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 8088:dumbo060:8088'
-alias proxy-dumbo-hdfs='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 50070:dumbo060:50070'
-alias proxy-dumbo-mrhistory='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 19888:dumbo060:19888'
-alias proxy-dumbo-nodemanager='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 8042:dumbo060:8042'
-alias proxy-dumbo-pregelix='ssh -p2123 chiwanpark@dumbo.unist.ac.kr -N -L 16001:dumbo060:16001'
 
 # custom command (t480s)
 alias speedtest-cli='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-alias temperature='for i in 0 1 2 3 4 5 6; do cat /sys/devices/virtual/thermal/thermal_zone${i}/temp; done'
 alias fixpdf='LANG=C LC_ALL=C sed -i s"|/Registry (Adobe) /Ordering (Korea1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g"'
-phone() {
-    adb connect 192.168.1.9:$1;
-    scrcpy -Sw;
-}
 
 # fzf
 source "$HOME/.config/zsh/fzf.zsh"
