@@ -1,22 +1,8 @@
-Host desk
-    HostName desk.chiwanpark.com
-    User chiwanpark
-
 Host desk-local
-    HostName 192.168.1.31
+    HostName 192.168.1.5
+    Port 10022
     User chiwanpark
 
-Host dumbo
-    HostName dumbo.unist.ac.kr
-    Port 2123
-    User chiwanpark
-
-Host chagall
-    HostName chagall.snu.ac.kr
-    Port 9999
-    User chiwanpark
-
-Host matisse
-    HostName matisse.snu.ac.kr
-    Port 2222
+Host mimosa
+    HostName mimosa.snu.ac.kr
     User chiwanpark

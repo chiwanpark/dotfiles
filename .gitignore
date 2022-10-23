@@ -1,3 +1,4 @@
 fonts/download
 *.kakao
 zshrc.local
+ssh/config.d/config.local
