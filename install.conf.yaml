@@ -7,6 +7,10 @@
     ~/.zshrc:
       force: true
       path: zsh/zshrc
+    ~/.p10k.zsh:
+      force: true
+      create: true
+      path: zsh/p10k.zsh
     ~/.config/nvim/init.vim:
       force: true
       create: true

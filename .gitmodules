@@ -1,9 +1,3 @@
 [submodule "tools/dotbot"]
 	path = tools/dotbot
 	url = https://github.com/anishathalye/dotbot.git
-[submodule "zsh/slimzsh"]
-	path = zsh/slimzsh
-	url = https://github.com/changs/slimzsh.git
-[submodule "zsh/zsh-completions"]
-	path = zsh/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions.git
