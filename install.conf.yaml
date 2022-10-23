@@ -26,10 +26,6 @@
       force: true
       create: true
       path: python/pip.conf
-    ~/.config/flake8:
-      force: true
-      create: true
-      path: python/flake8.conf
     ~/.config/onedrive/config:
       force: true
       create: true
