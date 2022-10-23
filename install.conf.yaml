@@ -26,14 +26,6 @@
       force: true
       create: true
       path: python/pip.conf
-    ~/.config/onedrive/config:
-      force: true
-      create: true
-      path: onedrive/config
-    ~/.config/onedrive/sync_list:
-      force: true
-      create: true
-      path: onedrive/sync_list
     ~/.config/code-server/config.yaml:
       force: true
       create: true
