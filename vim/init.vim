@@ -27,10 +27,16 @@ set number
 syntax on
 
 " disable mouse
-set mouse-=a
+set mouse=
 
 " draw the signcolumn always
 set signcolumn=yes
+
+" conditional plugin helper
+function! Cond(cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
 
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -38,23 +44,27 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'joshdick/onedark.vim'
 
 " vim-gitgutter & vim-fugitive
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))
+Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))
 
 " vim-surround
 Plug 'tpope/vim-surround'
 
 " vim-airline
-Plug 'bling/vim-airline'
-let g:airline_theme='onedark'
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#fnamemod=':t'
-let g:airline#extensions#tabline#buffer_nr_show=1
-let g:airline#extensions#tabline#buffer_nr_format='%s:'
+Plug 'bling/vim-airline', Cond(!exists('g:vscode'))
+if !exists('g:vscode')
+    let g:airline_theme='onedark'
+    let g:airline#extensions#tabline#enabled=1
+    let g:airline#extensions#tabline#fnamemod=':t'
+    let g:airline#extensions#tabline#buffer_nr_show=1
+    let g:airline#extensions#tabline#buffer_nr_format='%s:'
+endif
 
 " nerdtree
-Plug 'scrooloose/nerdtree'
-map <Leader>nt <ESC>:NERDTreeToggle<CR>
+Plug 'scrooloose/nerdtree', Cond(!exists('g:vscode'))
+if !exists('g:vscode')
+    map <Leader>nt <ESC>:NERDTreeToggle<CR>
+endif
 
 " configuration for html/css
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
@@ -67,83 +77,7 @@ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 " fzf (fuzzy finder)
 Plug 'junegunn/fzf'
 
-" nerdcommenter
-Plug 'scrooloose/nerdcommenter'
-
-" vim-cpp-modern (Modern C++ syntax highlighting)
-Plug 'bfrg/vim-cpp-modern'
-
-" vim-lsp (Language Server Protocol)
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-" flutter and dart
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'thosakwe/vim-flutter'
-
 call plug#end()
-
-" lsp handler
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    inoremap <expr> <Tab> pumvisible() ? '<C-n>' : '<Tab>'
-    inoremap <expr> <S-Tab> pumvisible() ? '<C-p>' : '<S-Tab>'
-    inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : '<cr>'
-    nmap <buffer> <leader>gd <plug>(lsp-definition)
-    nmap <buffer> <leader>gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>gi <plug>(lsp-implementation)
-    nmap <buffer> <leader>gr <plug>(lsp-rename)
-    nmap <buffer> <leader>k <plug>(lsp-hover)
-    nmap <buffer> <leader>p <plug>(lsp-code-action)
-endfunction
-
-" pylsp
-if executable('pylsp')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pylsp',
-        \ 'cmd': {server_info->['pylsp']},
-        \ 'allowlist': ['python'],
-        \ 'workspace_config': {'pylsp': {'configurationSources': ['flake8']}}
-        \ })
-endif
-
-" clangd
-if executable('clangd')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd']},
-        \ 'allowlist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ })
-endif
-
-" typescript-language-server for javascript
-if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'typescript-language-server-js',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
-        \ 'whitelist': ['javascript', 'javascript.jsx'],
-        \ })
-endif
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-
-" language server for flutter
-if executable('flutter')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'dart_ls',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, '/opt/flutter/bin/cache/dart-sdk/bin/dart /opt/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot --lsp --client-id vim']},
-        \ 'allowlist': ['dart'],
-        \ })
-endif
-let g:dart_style_guide=2
-
-augroup lsp_install
-    au!
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
 
 " colorscheme
 if (has("nvim"))
