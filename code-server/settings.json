@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "One Dark Pro Darker",
     "workbench.startupEditor": "none",
     "files.autoSave": "off",
     "editor.fontFamily": "monospace",
@@ -8,6 +8,7 @@
     "editor.occurrencesHighlight": false,
     "editor.minimap.enabled": false,
     "editor.autoClosingBrackets": "never",
+    "git.enabled": false,
     "terminal.integrated.defaultLocation": "editor",
     "python.defaultInterpreterPath": "python3",
     "python.linting.flake8Enabled": true,
@@ -16,5 +17,7 @@
         "--max-line-length=120",
         "--extend-ignore=E402",
         "--extend-exclude=.git,__pycache__,build,dist"
-    ]
+    ],
+    "vscode-neovim.logOutputToConsole": true,
+    "thunder-client.customLocation": "$HOME/.thunder-tests"
 }
