@@ -19,5 +19,7 @@
         "--extend-exclude=.git,__pycache__,build,dist"
     ],
     "vscode-neovim.logOutputToConsole": true,
-    "thunder-client.customLocation": "$HOME/.thunder-tests"
+    "thunder-client.customLocation": "$HOME/.thunder-tests",
+    "mdb.showMongoDBPlaygrounds": false,
+    "mdb.showMongoDBHelpExplorer": false
 }
