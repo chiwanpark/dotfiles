@@ -20,6 +20,10 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 
 # custom completion
 source ${HOME}/.config/zsh/completion.zsh
+case ${TERM} in (xterm*)
+    bindkey '^[[H' beginning-of-line
+    bindkey '^[[F' end-of-line
+esac
 
 # locale
 export LANG=en_US.UTF-8
