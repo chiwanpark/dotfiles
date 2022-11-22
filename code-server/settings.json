@@ -21,5 +21,7 @@
     "vscode-neovim.logOutputToConsole": true,
     "thunder-client.customLocation": "$HOME/.thunder-tests",
     "mdb.showMongoDBPlaygrounds": false,
-    "mdb.showMongoDBHelpExplorer": false
+    "mdb.showMongoDBHelpExplorer": false,
+    "redhat.telemetry.enabled": true,
+    "remote.autoForwardPorts": false
 }
