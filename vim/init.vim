@@ -41,7 +41,7 @@ endfunction
 call plug#begin('~/.local/share/nvim/plugged')
 
 " onedark.vim
-Plug 'joshdick/onedark.vim'
+Plug 'joshdick/onedark.vim', Cond(!exists('g:vscode'))
 
 " vim-gitgutter & vim-fugitive
 Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))
