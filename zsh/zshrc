@@ -18,12 +18,15 @@ zinit ice depth"1"
 zinit light romkatv/powerlevel10k
 zinit light zdharma-continuum/fast-syntax-highlighting
 
-# custom completion
+# custom scripts from https://github.com/changs/slimzsh/
+setopt autocd
+setopt extendedglob
+setopt NO_NOMATCH
+source ${HOME}/.config/zsh/keys.zsh
+source ${HOME}/.config/zsh/history.zsh
 source ${HOME}/.config/zsh/completion.zsh
-case ${TERM} in (xterm*)
-    bindkey '^[[H' beginning-of-line
-    bindkey '^[[F' end-of-line
-esac
+source ${HOME}/.config/zsh/correction.zsh
+source ${HOME}/.config/zsh/stack.zsh
 
 # locale
 export LANG=en_US.UTF-8
@@ -35,7 +38,7 @@ alias vi=nvim
 alias vim=nvim
 
 # PATH
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.go/bin:$PATH"
 
 # ls command
 export CLICOLOR=1 # for Darwin
@@ -62,10 +65,14 @@ pdf-decrypt() {
 # fzf
 source "$HOME/.config/zsh/fzf.zsh"
 
+# google cloud
 if [ -d "$HOME/.local/google-cloud-sdk" ]; then
     source "$HOME/.local/google-cloud-sdk/completion.zsh.inc"
     source "$HOME/.local/google-cloud-sdk/path.zsh.inc"
 fi
+
+# go
+export GOPATH=$HOME/.go
 
 # nvm
 if [[ -f "/usr/share/nvm/init-nvm.sh" ]]; then
