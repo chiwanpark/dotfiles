@@ -11,10 +11,14 @@
       force: true
       create: true
       path: zsh/p10k.zsh
-    ~/.config/nvim/init.vim:
+    ~/.config/nvim/init.lua:
       force: true
       create: true
-      path: vim/init.vim
+      path: vim/init.lua
+    ~/.config/nvim/lua:
+      force: true
+      create: true
+      path: vim/lua
     ~/.tmux.conf:
       force: true
       path: tmux/tmux.conf
@@ -30,15 +34,7 @@
       force: true
       create: true
       path: python/pip.conf
-    ~/.config/code-server/config.yaml:
-      force: true
-      create: true
-      path: code-server/config.yaml
-    ~/.local/share/code-server/User/settings.json:
-      force: true
-      create: true
-      path: code-server/settings.json
-    
+
 - shell:
     - command: [git pull, Updating dotfiles...]
       stdout: true
@@ -46,12 +42,6 @@
     - command: [git submodule update --init --recursive --quiet, Updating submodules...]
       stdout: true
       stderr: true
-    - command: ['curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim', Downloading vim-plug...]
-      stdout: true
-      stderr: true
-    - command: [nvim +PlugInstall +qall now, Installing vim plugins...]
-      stdout: true
-      stderr: true
-    - command: [touch ~/.config/nvim/init.vim.local, Creating local vim configuration file...]
+    - command: [nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync', Initialize Vim]
       stdout: true
       stderr: true
