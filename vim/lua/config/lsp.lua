@@ -28,11 +28,19 @@ function M.setup()
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
   local lspconfig = require("lspconfig")
   lspconfig["tsserver"].setup {
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      vim.bo.tabstop = 2
+      vim.bo.shiftwidth = 2
+    end,
     capabilities = capabilities,
   }
   lspconfig["svelte"].setup {
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      vim.bo.tabstop = 2
+      vim.bo.shiftwidth = 2
+    end,
     capabilities = capabilities,
   }
   lspconfig["tailwindcss"].setup {
@@ -43,7 +51,7 @@ function M.setup()
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
       -- disable exapndtab due to golang requires tab as indent
-      vim.opt.expandtab = false
+      vim.bo.expandtab = false
     end,
     capabilities = capabilities,
   }
