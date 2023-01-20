@@ -52,7 +52,6 @@ alias ll='ls -lh'
 alias proxy-snu='ssh -C2qTnN -D 8111 chiwanpark@mimosa.snu.ac.kr'
 
 # custom commands
-alias speedtest-cli='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias pdf-fontfix='LANG=C LC_ALL=C sed -i s"|/Registry (Adobe) /Ordering (Korea1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g"'
 pdf-decrypt() {
     local in="$1"
