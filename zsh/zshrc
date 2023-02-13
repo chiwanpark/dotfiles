@@ -65,7 +65,16 @@ pdf-decrypt() {
 }
 
 # fzf
-source "$HOME/.config/zsh/fzf.zsh"
+FZF_ROOT=/usr/share/fzf
+if [[ -f "${FZF_ROOT}/key-bindings.zsh" ]]; then
+  # maybe archlinux?
+  source "${FZF_ROOT}/key-bindings.zsh"
+  source "${FZF_ROOT}/completion.zsh"
+elif [[ -f "${HOME}/.fzf.zsh" ]]; then
+  # other distributions
+  source "${HOME}/.fzf.zsh"
+fi
+
 
 # google cloud
 if [ -d "$HOME/.local/google-cloud-sdk" ]; then
