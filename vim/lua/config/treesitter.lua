@@ -11,7 +11,8 @@ function M.setup()
       "go", "gomod",
       "html", "css", "scss", "svelte", "typescript", "tsx", "javascript",
       "lua", "python", "cpp", "c", "dart", "java", "scala", 
-      "comment", "markdown", "json", "toml", "yaml"
+      "comment", "markdown", "json", "toml", "yaml",
+      "sql", "graphql",
     },
     sync_install = true,
     auto_install = true,
