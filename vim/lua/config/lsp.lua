@@ -38,6 +38,8 @@ function M.setup()
   lspconfig["svelte"].setup {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
+      -- disable expandtab due to svelte requires tab as indent
+      vim.bo.expandtab = false
       vim.bo.tabstop = 2
       vim.bo.shiftwidth = 2
     end,
