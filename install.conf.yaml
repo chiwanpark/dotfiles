@@ -1,39 +1,21 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+      force: true
+
 - clean: ['~']
 
 - link:
-    ~/.config/zsh:
-      force: true
-      path: zsh
-    ~/.zshrc:
-      force: true
-      path: zsh/zshrc
-    ~/.p10k.zsh:
-      force: true
-      create: true
-      path: zsh/p10k.zsh
-    ~/.config/nvim/init.lua:
-      force: true
-      create: true
-      path: vim/init.lua
-    ~/.config/nvim/lua:
-      force: true
-      create: true
-      path: vim/lua
-    ~/.tmux.conf:
-      force: true
-      path: tmux/tmux.conf
-    ~/.ssh/config:
-      force: true
-      create: true
-      path: ssh/config
-    ~/.ssh/config.d:
-      force: true
-      create: true
-      path: ssh/config.d
-    ~/.pip/pip.conf:
-      force: true
-      create: true
-      path: python/pip.conf
+    ~/.config/zsh: zsh
+    ~/.zshrc: zsh/zshrc
+    ~/.p10k.zsh: zsh/p10k.zsh
+    ~/.config/nvim/init.lua: vim/init.lua
+    ~/.config/nvim/lua: vim/lua
+    ~/.tmux.conf: tmux/tmux.conf
+    ~/.ssh/config: ssh/config
+    ~/.ssh/config.d: ssh/config.d
+    ~/.pip/pip.conf: python/pip.conf
 
 - shell:
     - command: [git pull, Updating dotfiles...]
