@@ -36,7 +36,10 @@ function M.setup()
       "navarasu/onedark.nvim",
       config = require("config.colorscheme").setup
     }
-    use { "airblade/vim-gitgutter" }
+    use {
+        "airblade/vim-gitgutter",
+        branch = "main"
+    }
     use { "tpope/vim-surround" }
     use {
       "scrooloose/nerdtree",
