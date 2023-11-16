@@ -6,7 +6,7 @@
             "type": "basic",
             "from": {"key_code": "left_control", "modifiers": {"optional": ["any"]}},
             "to": [{"key_code": "left_gui"}],
-            "conditions": [{"type": "frontmost_application_unless", "bundle_identifiers": ["com.googlecode.iterm2"]}]
+            "conditions": [{"type": "frontmost_application_unless", "bundle_identifiers": ["com.googlecode.iterm2", "com.google.Chrome"]}]
         }]
     }, {
         "description": "Use Command+Number to switch workspace",
@@ -28,10 +28,10 @@
             "to": {"key_code": "4", "modifiers": ["left_control"]}
         }]
     }, {
-        "description": "Use Command+Up Arrow to call Mission Control",
+        "description": "Use Command+Space Arrow to call Mission Control",
         "manipulators": [{
             "type": "basic",
-            "from": {"key_code": "up_arrow", "modifiers": {"mandatory": ["left_gui"]}},
+            "from": {"key_code": "spacebar", "modifiers": {"mandatory": ["left_gui"]}},
             "to": {"key_code": "up_arrow", "modifiers": ["left_control"]}
         }]
     }, {
