@@ -73,6 +73,10 @@ function M.setup()
       config = require("config.lsp").setup,
     }
     use { "github/copilot.vim" }
+    use {
+      "lervag/vimtex",
+      config = require("config.vimtex").setup,
+    }
   end
 
   pcall(require, "impatient")
