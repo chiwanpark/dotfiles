@@ -27,12 +27,6 @@ function M.setup()
   u.keymap("c", "b7", "<Cmd>lua require('bufferline').go_to_buffer(7, true)<CR>", { noremap = false })
   u.keymap("c", "b8", "<Cmd>lua require('bufferline').go_to_buffer(8, true)<CR>", { noremap = false })
   u.keymap("c", "b9", "<Cmd>lua require('bufferline').go_to_buffer(9, true)<CR>", { noremap = false })
-  u.keymap("c", "b10", "<Cmd>lua require('bufferline').go_to_buffer(10, true)<CR>", { noremap = false })
-  u.keymap("c", "b11", "<Cmd>lua require('bufferline').go_to_buffer(11, true)<CR>", { noremap = false })
-  u.keymap("c", "b12", "<Cmd>lua require('bufferline').go_to_buffer(12, true)<CR>", { noremap = false })
-  u.keymap("c", "b13", "<Cmd>lua require('bufferline').go_to_buffer(13, true)<CR>", { noremap = false })
-  u.keymap("c", "b14", "<Cmd>lua require('bufferline').go_to_buffer(14, true)<CR>", { noremap = false })
-  u.keymap("c", "b15", "<Cmd>lua require('bufferline').go_to_buffer(15, true)<CR>", { noremap = false })
 end
 
 return M

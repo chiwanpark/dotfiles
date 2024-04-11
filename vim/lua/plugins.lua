@@ -67,16 +67,6 @@ function M.setup()
       "hrsh7th/nvim-cmp",
       config = require("config.completion").setup,
     }
-    use { "hrsh7th/cmp-nvim-lsp" }
-    use {
-      "neovim/nvim-lspconfig",
-      config = require("config.lsp").setup,
-    }
-    use { "github/copilot.vim" }
-    use {
-      "lervag/vimtex",
-      config = require("config.vimtex").setup,
-    }
   end
 
   pcall(require, "impatient")
