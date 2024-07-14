@@ -30,7 +30,6 @@ function M.setup()
   }
 
   local function plugins(use)
-    use { "lewis6991/impatient.nvim" }
     use { "wbthomason/packer.nvim" }
     use {
       "navarasu/onedark.nvim",
@@ -62,13 +61,19 @@ function M.setup()
     }
     use { "hrsh7th/vim-vsnip" }
     use { "hrsh7th/cmp-vsnip" }
+    use { "hrsh7th/cmp-nvim-lsp" }
     use {
       "hrsh7th/nvim-cmp",
       config = require("config.completion").setup,
     }
+    use {
+      "neovim/nvim-lspconfig",
+      config = require("config.lsp").setup,
+    }
+    use { "github/copilot.vim" }
   end
 
-  pcall(require, "impatient")
+  vim.loader.enable()
   pcall(require, "packer_compiled")
   require("packer").init(conf)
   require("packer").startup(plugins)
