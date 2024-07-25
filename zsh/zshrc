@@ -89,6 +89,9 @@ export GOPATH=$HOME/.go
 if [[ -f "/usr/share/nvm/init-nvm.sh" ]]; then
     source /usr/share/nvm/init-nvm.sh
 fi
+if [[ -f "${HOME}/.nvm/nvm.sh" ]]; then
+    source "${HOME}/.nvm/nvm.sh"
+fi
 
 # rbenv
 if [ -x "$(command -v rbenv)" ]; then
