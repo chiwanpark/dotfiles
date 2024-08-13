@@ -53,11 +53,6 @@ function M.setup()
     capabilities = capabilities,
   }
 
-  lspconfig["basedpyright"].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-
   lspconfig["gopls"].setup {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
@@ -93,6 +88,28 @@ function M.setup()
         ["local"] = "cheetah"
       },
     },
+  }
+
+  lspconfig["pylsp"].setup {
+    on_attach = on_attach,
+    settings = {
+      pylsp = {
+        plugins = {
+          flake8 = {
+            enabled = false,
+          },
+          mypy = {
+            enabled = true,
+          },
+          pycodestyle = {
+            enabled = false,
+          },
+          pyflakes = {
+            enabled = false,
+          },
+        }
+      }
+    }
   }
 end
 
