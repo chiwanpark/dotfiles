@@ -63,6 +63,14 @@ pdf-decrypt() {
     echo 'Decrypting...'
     pdftk "$in" input_pw "$pw" output "${in:r}_decrypted.pdf"
 }
+phonescr() {
+    count=$(adb devices | grep '192.192.1.248' | wc -l)
+    if [ $count -eq 0 ]; then
+        echo 'No device found'
+        adb connect 192.168.1.248:${1}
+    fi
+    scrcpy --keyboard=uhid --max-size=1280 --video-bit-rate=16M --video-codec=h265 --stay-awake
+}
 
 # fzf
 FZF_ROOT=/usr/share/fzf
