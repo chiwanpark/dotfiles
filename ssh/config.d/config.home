@@ -1,6 +1,11 @@
-Host desk-local
+Host desk
     HostName 192.168.1.129
     Port 10022
+    User chiwanpark
+
+Host workbench
+    HostName 192.168.1.132
+    Port 22
     User chiwanpark
 
 Host mimosa
