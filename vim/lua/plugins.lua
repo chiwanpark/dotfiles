@@ -70,7 +70,10 @@ function M.setup()
       "neovim/nvim-lspconfig",
       config = require("config.lsp").setup,
     }
-    use { "github/copilot.vim" }
+    use {
+      "github/copilot.vim",
+      config = require("config.copilot").setup,
+    }
   end
 
   vim.loader.enable()
