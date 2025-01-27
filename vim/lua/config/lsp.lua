@@ -111,6 +111,15 @@ function M.setup()
       }
     }
   }
+
+  lspconfig["clangd"].setup {
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      vim.bo.tabstop = 2
+      vim.bo.shiftwidth = 2
+    end,
+    capabilities = capabilities,
+  }
 end
 
 return M
