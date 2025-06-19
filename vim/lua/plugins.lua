@@ -32,7 +32,7 @@ function M.setup()
   local function plugins(use)
     use { "wbthomason/packer.nvim" }
     use {
-      "navarasu/onedark.nvim",
+      "arcticicestudio/nord-vim",
       config = require("config.colorscheme").setup
     }
     use {

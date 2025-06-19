@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
   vim.opt.termguicolors = true
-  require("onedark").load()
+  vim.cmd("colorscheme nord")
 end
 
 return M
