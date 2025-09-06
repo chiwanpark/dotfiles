@@ -4,10 +4,14 @@ Host desk
     User chiwanpark
 
 Host workbench
-    HostName 192.168.1.132
+    HostName 192.168.1.189
     Port 22
     User chiwanpark
 
 Host mimosa
     HostName mimosa.snu.ac.kr
     User chiwanpark
+
+Host metrics
+    HostName metrics.chiwanpark.com
+    User root
