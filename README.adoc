@@ -18,7 +18,7 @@ All files should be installed with the script.
 ----
 $ git clone https://github.com/chiwanpark/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
-$ ./install
+$ ./install.sh
 ----
 
 For Karabiner-Elements configuration, type the following commands:
@@ -26,6 +26,13 @@ For Karabiner-Elements configuration, type the following commands:
 [source,sh]
 ----
 $ ln -s ~/.dotfiles/karabiner/complex.json ~/.config/karabiner/assets/complex_modifications/complex.json
+----
+
+For monospace fonts, run the following command:
+
+[source,sh]
+----
+$ ./fonts/install.sh
 ----
 
 = License
