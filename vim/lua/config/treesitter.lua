@@ -5,7 +5,7 @@ function M.run_on_update()
 end
 
 function M.setup()
-  require("nvim-treesitter.configs").setup({
+  require("nvim-treesitter").setup({
     ensure_installed = {
       "dockerfile", "bash",
       "go", "gomod",
