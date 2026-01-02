@@ -26,18 +26,20 @@ function M.setup()
   end
 
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
-  local lspconfig = require("lspconfig")
-
-  lspconfig["ts_ls"].setup {
+  
+  -- ts_ls
+  vim.lsp.config("ts_ls", {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
       vim.bo.tabstop = 2
       vim.bo.shiftwidth = 2
     end,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable("ts_ls")
 
-  lspconfig["svelte"].setup {
+  -- svelte
+  vim.lsp.config("svelte", {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
       -- disable expandtab due to svelte requires tab as indent
@@ -46,14 +48,18 @@ function M.setup()
       vim.bo.shiftwidth = 2
     end,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable("svelte")
 
-  lspconfig["tailwindcss"].setup {
+  -- tailwindcss
+  vim.lsp.config("tailwindcss", {
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable("tailwindcss")
 
-  lspconfig["gopls"].setup {
+  -- gopls
+  vim.lsp.config("gopls", {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
       -- disable exapndtab due to golang requires tab as indent
@@ -88,9 +94,11 @@ function M.setup()
         ["local"] = "cheetah"
       },
     },
-  }
+  })
+  vim.lsp.enable("gopls")
 
-  lspconfig["pylsp"].setup {
+  -- pylsp
+  vim.lsp.config("pylsp", {
     on_attach = on_attach,
     settings = {
       pylsp = {
@@ -110,16 +118,19 @@ function M.setup()
         }
       }
     }
-  }
+  })
+  vim.lsp.enable("pylsp")
 
-  lspconfig["clangd"].setup {
+  -- clangd
+  vim.lsp.config("clangd", {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
       vim.bo.tabstop = 2
       vim.bo.shiftwidth = 2
     end,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable("clangd")
 end
 
 return M
