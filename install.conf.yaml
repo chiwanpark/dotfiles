@@ -24,6 +24,6 @@
     - command: [git submodule update --init --recursive --quiet, Updating submodules...]
       stdout: true
       stderr: true
-    - command: [nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync', Initialize Vim]
+    - command: [nvim --headless -c 'q', Initialize Vim]
       stdout: true
       stderr: true
