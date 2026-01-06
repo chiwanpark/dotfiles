@@ -7,19 +7,26 @@ Host desk
     HostName 192.168.1.129
     Port 10022
     User chiwanpark
+    ForwardAgent yes
 
 Host workbench
     HostName 192.168.1.189
     Port 22
     User chiwanpark
+    ForwardAgent yes
 
 Host workbench-external
     HostName workbench.chiwanpark.com
     Port 10022
     User chiwanpark
+    ForwardAgent yes
 
-Host mimosa
+Host mimosa-snu
     HostName mimosa.snu.ac.kr
+    User chiwanpark
+
+Host martini-snu
+    HostName martini.snu.ac.kr
     User chiwanpark
 
 Host metrics
