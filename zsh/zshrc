@@ -116,6 +116,15 @@ if [[ -f "$HOME/.config/zsh/zshrc.local" ]]; then
     source "$HOME/.config/zsh/zshrc.local"
 fi
 
+# SSH agent socket override
+SOCK_SYMLINK="$HOME/.ssh/ssh_auth_sock"
+if [ -z "$TMUX" ] && [ -n "$SSH_AUTH_SOCK" ] && [ -S "$SSH_AUTH_SOCK" ]; then
+    ln -sf "$SSH_AUTH_SOCK" "$SOCK_SYMLINK"
+fi
+if [ -n "$TMUX" ]; then
+    export SSH_AUTH_SOCK="$SOCK_SYMLINK"
+fi
+
 # kubectl autocompletion
 if [ -x "$(command -v kubectl)" ]; then
     source <(kubectl completion zsh)
