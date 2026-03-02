@@ -38,6 +38,6 @@ o.autoindent = true
 o.number = true
 o.signcolumn = "yes"
 
--- disable mouse
-o.mouse = ""
+-- enable mouse
+o.mouse = nvi
 
