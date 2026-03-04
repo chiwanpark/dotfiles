@@ -41,7 +41,7 @@ alias vi=nvim
 alias vim=nvim
 
 # PATH
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.go/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
 # ls command
 export CLICOLOR=1 # for Darwin
@@ -91,7 +91,15 @@ if [ -d "$HOME/.local/google-cloud-sdk" ]; then
 fi
 
 # go
-export GOPATH=$HOME/.go
+export GOPATH="$HOME/.go"
+if [ -d "$GOPATH/bin" ]; then
+    export PATH="$GOPATH/bin:$PATH"
+fi
+if [ -d "/usr/local/go/bin" ]; then
+    export PATH="/usr/local/go/bin:$PATH"
+elif [ -d "/opt/homebrew/opt/go/bin" ]; then
+    export PATH="/opt/homebrew/opt/go/bin:$PATH"
+fi
 
 # nvm
 if [[ -f "/usr/share/nvm/init-nvm.sh" ]]; then
