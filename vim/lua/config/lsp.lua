@@ -29,6 +29,7 @@ function M.setup()
   
   -- ts_ls
   vim.lsp.config("ts_ls", {
+    cmd = { "typescript-language-server", "--stdio" },
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
       vim.bo.tabstop = 2

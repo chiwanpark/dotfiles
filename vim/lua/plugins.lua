@@ -1,10 +1,10 @@
 return {
   {
-    "arcticicestudio/nord-vim",
+    "AlexvZyl/nordic.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("config.colorscheme").setup()
+      require("nordic").load()
     end,
   },
   {
@@ -36,6 +36,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
     config = function()
       require("config.treesitter").setup()
