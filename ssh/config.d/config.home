@@ -14,12 +14,26 @@ Host workbench
     Port 22
     User chiwanpark
     ForwardAgent yes
+    LocalForward 3000 localhost:3000
+    LocalForward 5173 localhost:5173
+    LocalForward 5174 localhost:5174
+    LocalForward 4566 localhost:4566
+    LocalForward 5432 localhost:5432
+    LocalForward 6379 localhost:6379
+    LocalForward 9000 localhost:9000
 
 Host workbench-external
     HostName workbench.chiwanpark.com
     Port 10022
     User chiwanpark
     ForwardAgent yes
+    LocalForward 3000 localhost:3000
+    LocalForward 5173 localhost:5173
+    LocalForward 5174 localhost:5174
+    LocalForward 4566 localhost:4566
+    LocalForward 5432 localhost:5432
+    LocalForward 6379 localhost:6379
+    LocalForward 9000 localhost:9000
 
 Host mimosa-snu
     HostName mimosa.snu.ac.kr
