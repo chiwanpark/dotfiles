@@ -62,11 +62,5 @@ return {
       require("config.lsp").setup()
     end,
   },
-  {
-    "github/copilot.vim",
-    config = function()
-      require("config.copilot").setup()
-    end,
-  },
 }
 
