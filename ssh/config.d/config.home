@@ -43,6 +43,6 @@ Host martini-snu
     HostName martini.snu.ac.kr
     User chiwanpark
 
-Host metrics
-    HostName metrics.chiwanpark.com
-    User root
+Host pi
+    HostName pi.chiwanpark.com
+    User pi
