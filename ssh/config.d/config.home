@@ -10,7 +10,7 @@ Host desk
     ForwardAgent yes
 
 Host workbench
-    HostName 192.168.1.189
+    HostName 192.168.1.119
     Port 22
     User chiwanpark
     ForwardAgent yes
