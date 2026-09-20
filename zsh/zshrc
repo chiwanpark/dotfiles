@@ -31,6 +31,10 @@ source ${HOME}/.config/zsh/completion.zsh
 source ${HOME}/.config/zsh/correction.zsh
 source ${HOME}/.config/zsh/stack.zsh
 
+# move cursor by word
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3D' backward-word
+
 # locale
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
