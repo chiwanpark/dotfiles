@@ -15,18 +15,50 @@ function M.setup()
   })
 
   -- keymap for switch buffers
-  local u = require("utils")
-  u.keymap("c", "bn", "<Cmd>BufferLineCycleNext<CR>", { noremap = false })
-  u.keymap("c", "bp", "<Cmd>BufferLineCyclePrev<CR>", { noremap = false })
-  u.keymap("c", "b1", "<Cmd>lua require('bufferline').go_to_buffer(1, true)<CR>", { noremap = false })
-  u.keymap("c", "b2", "<Cmd>lua require('bufferline').go_to_buffer(2, true)<CR>", { noremap = false })
-  u.keymap("c", "b3", "<Cmd>lua require('bufferline').go_to_buffer(3, true)<CR>", { noremap = false })
-  u.keymap("c", "b4", "<Cmd>lua require('bufferline').go_to_buffer(4, true)<CR>", { noremap = false })
-  u.keymap("c", "b5", "<Cmd>lua require('bufferline').go_to_buffer(5, true)<CR>", { noremap = false })
-  u.keymap("c", "b6", "<Cmd>lua require('bufferline').go_to_buffer(6, true)<CR>", { noremap = false })
-  u.keymap("c", "b7", "<Cmd>lua require('bufferline').go_to_buffer(7, true)<CR>", { noremap = false })
-  u.keymap("c", "b8", "<Cmd>lua require('bufferline').go_to_buffer(8, true)<CR>", { noremap = false })
-  u.keymap("c", "b9", "<Cmd>lua require('bufferline').go_to_buffer(9, true)<CR>", { noremap = false })
+  local maps = {
+    bn = "<Cmd>BufferLineCycleNext<CR>",
+    bp = "<Cmd>BufferLineCyclePrev<CR>",
+  }
+  for i = 1, 9 do
+    maps["b" .. i] = ("<Cmd>lua require('bufferline').go_to_buffer(%d, true)<CR>"):format(i)
+  end
+
+  local active = false
+
+  local function enable()
+    if active then
+      return
+    end
+    for lhs, rhs in pairs(maps) do
+      vim.keymap.set("c", lhs, rhs, { silent = true })
+    end
+    active = true
+  end
+
+  local function disable()
+    if not active then
+      return
+    end
+    for lhs, _ in pairs(maps) do
+      pcall(vim.keymap.del, "c", lhs)
+    end
+    active = false
+  end
+
+  local group = vim.api.nvim_create_augroup("BufferlineCmdlineKeymap", { clear = true })
+  vim.api.nvim_create_autocmd("CmdlineEnter", { group = group, pattern = ":", callback = enable })
+  vim.api.nvim_create_autocmd("CmdlineLeave", { group = group, pattern = "*", callback = disable })
+  vim.api.nvim_create_autocmd("CmdlineChanged", {
+    group = group,
+    pattern = ":",
+    callback = function()
+      if vim.fn.getcmdline() == "" then
+        enable()
+      else
+        disable()
+      end
+    end,
+  })
 end
 
 return M
