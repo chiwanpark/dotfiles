@@ -10,6 +10,7 @@ All files should be installed with the script.
 * tmux
 * ssh
 * pip
+* btop
 * Karabiner-Elements
 
 = Usage

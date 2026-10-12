@@ -16,6 +16,7 @@
     ~/.ssh/config: ssh/config
     ~/.ssh/config.d: ssh/config.d
     ~/.pip/pip.conf: python/pip.conf
+    ~/.config/btop/btop.conf: btop/btop.conf
 
 - shell:
     - command: [git pull, Updating dotfiles...]
