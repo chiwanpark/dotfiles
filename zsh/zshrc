@@ -105,12 +105,11 @@ elif [ -d "/opt/homebrew/opt/go/bin" ]; then
     export PATH="/opt/homebrew/opt/go/bin:$PATH"
 fi
 
-# nvm
-if [[ -f "/usr/share/nvm/init-nvm.sh" ]]; then
-    source /usr/share/nvm/init-nvm.sh
-fi
-if [[ -f "${HOME}/.nvm/nvm.sh" ]]; then
-    source "${HOME}/.nvm/nvm.sh"
+# fnm
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
 fi
 
 # direnv
