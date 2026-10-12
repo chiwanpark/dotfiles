@@ -52,9 +52,6 @@ export CLICOLOR=1 # for Darwin
 ls --color=auto &> /dev/null && alias ls='ls --color=auto'
 alias ll='ls -lh'
 
-# ssh proxies
-alias proxy-snu='ssh -C2qTnN -D 8111 chiwanpark@martini.snu.ac.kr'
-
 # custom commands
 alias pdf-fontfix='LANG=C LC_ALL=C sed -i s"|/Registry (Adobe) /Ordering (Korea1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g"'
 pdf-decrypt() {
@@ -67,14 +64,6 @@ pdf-decrypt() {
     echo 'Decrypting...'
     pdftk "$in" input_pw "$pw" output "${in:r}_decrypted.pdf"
 }
-phonescr() {
-    count=$(adb devices | grep '192.192.1.248' | wc -l)
-    if [ $count -eq 0 ]; then
-        echo 'No device found'
-        adb connect 192.168.1.248:${1}
-    fi
-    scrcpy --keyboard=uhid --max-size=1280 --video-bit-rate=16M --video-codec=h265 --stay-awake
-}
 
 # fzf
 FZF_ROOT=/usr/share/fzf
@@ -85,13 +74,6 @@ if [[ -f "${FZF_ROOT}/key-bindings.zsh" ]]; then
 elif [[ -f "${HOME}/.fzf.zsh" ]]; then
   # other distributions
   source "${HOME}/.fzf.zsh"
-fi
-
-
-# google cloud
-if [ -d "$HOME/.local/google-cloud-sdk" ]; then
-    source "$HOME/.local/google-cloud-sdk/completion.zsh.inc"
-    source "$HOME/.local/google-cloud-sdk/path.zsh.inc"
 fi
 
 # go
@@ -110,11 +92,6 @@ FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "$(fnm env --shell zsh)"
-fi
-
-# direnv
-if [ -x "$(command -v direnv)" ]; then
-    eval "$(direnv hook zsh)"
 fi
 
 # rbenv
@@ -140,19 +117,6 @@ fi
 if [ -x "$(command -v kubectl)" ]; then
     source <(kubectl completion zsh)
 fi
-
-# iterm2 integration
-if [[ -f "${HOME}/.iterm2_shell_integration.zsh" ]]; then
-    source "${HOME}/.iterm2_shell_integration.zsh"
-fi
-
-# pnpm
-export PNPM_HOME="${HOME}/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-esac
-# pnpm end
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
