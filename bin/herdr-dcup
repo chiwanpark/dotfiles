@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# ~/.local/bin/herdr-dcup
+dir="${HERDR_ACTIVE_PANE_CWD:-$PWD}"
+
+pause() { echo; read -rsn1 -p "Press any key to continue..."; }
+
+common=$(git -C "$dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
+if [[ -z "$common" ]]; then
+  echo "No Git repository: $dir"; pause; exit 1
+fi
+root=$(dirname "$common")
+
+if [[ ! -f "$root/.devcontainer/devcontainer.json" && ! -f "$root/.devcontainer.json" ]]; then
+  echo "devcontainer is not found: $root"; pause; exit 1
+fi
+
+docker=$(command -v docker-safe || command -v docker)
+
+extra=(
+  --dotfiles-repository https://github.com/chiwanpark/dotfiles.git
+  --dotfiles-target-path '~/.dotfiles'
+  --docker-path "$docker"
+  --mount "type=bind,source=$HOME/.config/herdr,target=/run/herdr"
+  --mount "type=bind,source=$(command -v herdr),target=/usr/local/bin/herdr"
+  --additional-features '{"ghcr.io/chiwanpark/container-images/pi:1": {}}'
+)
+
+devcontainer up --workspace-folder "$root" "${extra[@]}" "$@"
+status=$?
+[[ $status -eq 0 ]] && echo "devcontainer is up." || echo "fail to launch devcontainer: exitcode $status"
+pause
+exit $status

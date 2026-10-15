@@ -1,0 +1,53 @@
+onboarding = false
+
+[terminal]
+new_cwd = "follow"
+default_shell = "herdr-pane-shell"
+
+[ui]
+sidebar_collapsed_mode = "compact"
+
+[ui.toast]
+delivery = "system"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[[keys.command]]
+key = "prefix+i"
+type = "pane"
+command = '"$HERDR_BIN_PATH" tab create --cwd "$HERDR_ACTIVE_PANE_CWD" --label pi --env HERDR_PANE_CMD=herdr-pi --focus'
+description = "launch pi"
+
+[[keys.command]]
+key = "prefix+shift+n"
+type = "popup"
+command = '"$HERDR_BIN_PATH" workspace create --cwd "$HOME" --focus'
+description = "new space with home directory"
+
+[[keys.command]]
+key = "prefix+u"
+type = "pane"
+command = "herdr-dcup"
+description = "devcontainer up"
+
+[[keys.command]]
+key = "prefix+shift+u"
+type = "pane"
+command = "herdr-dcup --remove-existing-container"
+description = "devcontainer up (with recreate)"
+
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "exec $SHELL -i"
+description = "host shell"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+shift+s"
+type = "plugin_action"
+command = "devcontainer.open-stop"
+description = "stop dev container"

@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+require=0
+if [[ ${1:-} == --require ]]; then
+  require=1
+  shift
+fi
+if [[ $# -eq 0 ]]; then
+  echo "usage: herdr-dcexec [--require] command [args...]" >&2
+  exit 2
+fi
+
+pause() { echo; read -rsn1 -p "Press any key to continue..."; }
+
+common=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
+root=${common:+$(dirname "$common")}
+if [[ -z "$root" || ! ( -f "$root/.devcontainer/devcontainer.json" || -f "$root/.devcontainer.json" ) ]]; then
+  exec "$@"
+fi
+
+docker=$(command -v docker-safe || command -v docker)
+if [[ -z "$docker" || -z $("$docker" ps -q --filter "label=devcontainer.local_folder=$root") ]]; then
+  if (( require )); then
+    echo "devcontainer is not running: $root"; pause; exit 1
+  fi
+  exec "$@"
+fi
+
+target="/workspaces/$(basename "$root")"
+cwd=$(pwd -P)
+if [[ $cwd == "$root"/* ]]; then
+  target+=${cwd#"$root"}
+fi
+
+remote_env=(
+  --remote-env HERDR_ENV=1
+  --remote-env "HERDR_PANE_ID=${HERDR_PANE_ID:-}"
+  --remote-env HERDR_BIN_PATH=/usr/local/bin/herdr
+  --remote-env HERDR_SOCKET_PATH=/run/herdr/herdr.sock
+)
+if [[ -n ${HERDR_AGENT:-} ]]; then
+  remote_env+=(--remote-env "HERDR_AGENT=$HERDR_AGENT")
+fi
+
+exec devcontainer exec --docker-path "$docker" --workspace-folder "$root" "${remote_env[@]}" \
+  bash -c 'cd "$1" 2>/dev/null; shift; exec "$@"' _ "$target" "$@"

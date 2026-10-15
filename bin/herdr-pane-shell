@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# ~/.local/bin/herdr-pane-shell
+if [[ -n ${HERDR_PANE_CMD:-} ]]; then
+  read -ra cmd <<<"$HERDR_PANE_CMD"
+  unset HERDR_PANE_CMD
+  exec "${cmd[@]}"
+fi
+
+shell=${SHELL:-/bin/bash}
+if [[ ${shell##*/} == herdr-pane-shell ]]; then
+  shell=/bin/bash
+fi
+exec herdr-dcexec "${shell##*/}" -i "$@"

@@ -17,6 +17,10 @@
     ~/.ssh/config.d: ssh/config.d
     ~/.pip/pip.conf: python/pip.conf
     ~/.config/btop/btop.conf: btop/btop.conf
+    ~/.config/herdr/config.toml: herdr/config.toml
+    ~/.local/bin/:
+      glob: true
+      path: bin/*
 
 - shell:
     - command: [git pull, Updating dotfiles...]
@@ -26,5 +30,8 @@
       stdout: true
       stderr: true
     - command: [nvim --headless -c 'q', Initialize Vim]
+      stdout: true
+      stderr: true
+    - command: [herdr/install.sh, Installing herdr...]
       stdout: true
       stderr: true

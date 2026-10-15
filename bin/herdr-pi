@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+export HERDR_AGENT=pi
+exec herdr-dcexec --require pi "$@"

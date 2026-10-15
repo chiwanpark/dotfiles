@@ -11,6 +11,7 @@ All files should be installed with the script.
 * ssh
 * pip
 * btop
+* herdr
 * Karabiner-Elements
 
 = Usage
