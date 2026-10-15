@@ -17,7 +17,7 @@ Host workbench
 
 Host workbench-external
     HostName workbench.chiwanpark.com
-    Port 10022
+    Port 22
     User chiwanpark
     ForwardAgent yes
 
