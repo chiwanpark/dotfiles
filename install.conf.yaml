@@ -19,6 +19,7 @@
     ~/.pip/pip.conf: python/pip.conf
     ~/.config/btop/btop.conf: btop/btop.conf
     ~/.config/herdr/config.toml: herdr/config.toml
+    ~/.config/niri/config.kdl: niri/config.kdl
     ~/.local/bin/:
       glob: true
       path: bin/*

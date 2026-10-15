@@ -12,6 +12,7 @@ All files should be installed with the script.
 * pip
 * btop
 * herdr
+* niri
 * Karabiner-Elements
 
 = Usage
