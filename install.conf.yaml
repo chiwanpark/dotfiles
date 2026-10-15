@@ -8,6 +8,7 @@
 
 - link:
     ~/.config/zsh: zsh
+    ~/.zshenv: zsh/zshenv
     ~/.zshrc: zsh/zshrc
     ~/.p10k.zsh: zsh/p10k.zsh
     ~/.config/nvim/init.lua: vim/init.lua
