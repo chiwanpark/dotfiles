@@ -1,0 +1,11 @@
+[Unit]
+Description=Switch monitor input when USB device changes state
+
+[Service]
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin
+ExecStart=%h/.local/bin/display_switch
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

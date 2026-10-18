@@ -13,6 +13,7 @@ All files should be installed with the script.
 * btop
 * herdr
 * niri
+* display-switch
 * Karabiner-Elements
 
 = Usage
@@ -36,6 +37,18 @@ For monospace fonts, run the following command:
 [source,sh]
 ----
 $ ./fonts/install.sh
+----
+
+= Display switching
+
+The `display-switch` configuration changes the LG ULTRAFINE input when the configured USB receiver moves through the USB switch. It uses `lg-input-switch` because this monitor requires LG's vendor-specific DDC/CI input command rather than the standard input-selector command.
+
+Run the dotfiles installer, then run the display-switch installer:
+
+[source,sh]
+----
+$ ./install.sh
+$ ./display-switch/install.sh
 ----
 
 = License
