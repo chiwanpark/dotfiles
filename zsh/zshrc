@@ -45,25 +45,12 @@ alias vi=nvim
 alias vim=nvim
 
 # PATH
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.pi/agent/bin:$HOME/.cargo/bin:$PATH"
 
 # ls command
 export CLICOLOR=1 # for Darwin
 ls --color=auto &> /dev/null && alias ls='ls --color=auto'
 alias ll='ls -lh'
-
-# custom commands
-alias pdf-fontfix='LANG=C LC_ALL=C sed -i s"|/Registry (Adobe) /Ordering (Korea1) /Supplement [0-9]|/Registry(Adobe) /Ordering(Identity) /Supplement 0|g"'
-pdf-decrypt() {
-    local in="$1"
-    local pw="$2"
-    if [ -z "$pw" ]; then
-        echo -n 'Password: '
-        read -s pw
-    fi
-    echo 'Decrypting...'
-    pdftk "$in" input_pw "$pw" output "${in:r}_decrypted.pdf"
-}
 
 # fzf
 FZF_ROOT=/usr/share/fzf
@@ -85,18 +72,6 @@ if [ -d "/usr/local/go/bin" ]; then
     export PATH="/usr/local/go/bin:$PATH"
 elif [ -d "/opt/homebrew/opt/go/bin" ]; then
     export PATH="/opt/homebrew/opt/go/bin:$PATH"
-fi
-
-# fnm
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env --shell zsh)"
-fi
-
-# rbenv
-if [ -x "$(command -v rbenv)" ]; then
-    eval "$(rbenv init -)"
 fi
 
 # import local zsh confiuration
