@@ -11,6 +11,23 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+if vim.g.clipboard == nil
+  and (vim.env.TMUX or "") == ""
+  and (vim.env.DISPLAY or "") == ""
+  and (vim.env.WAYLAND_DISPLAY or "") == ""
+  and vim.fn.has("mac") == 0
+then
+  local osc52 = require("vim.ui.clipboard.osc52")
+  local function paste()
+    return { vim.fn.getreg("", 1, true), vim.fn.getregtype("") }
+  end
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("+") },
+    paste = { ["+"] = paste, ["*"] = paste },
+  }
+end
+
 require("lazy").setup("plugins")
 
 local o = vim.opt
