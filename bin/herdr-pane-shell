@@ -6,8 +6,4 @@ if [[ -n ${HERDR_PANE_CMD:-} ]]; then
   exec "${cmd[@]}"
 fi
 
-shell=${SHELL:-/bin/bash}
-if [[ ${shell##*/} == herdr-pane-shell ]]; then
-  shell=/bin/bash
-fi
-exec herdr-dcexec "${shell##*/}" -i "$@"
+exec herdr-dcexec --shell "$@"
