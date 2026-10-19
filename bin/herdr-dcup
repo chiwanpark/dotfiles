@@ -16,12 +16,16 @@ fi
 
 docker=$(command -v docker-safe || command -v docker)
 
+images="${TMPDIR:-/tmp}/herdr-clipboard-images-$(id -u)"
+mkdir -p -m 700 "$images"
+
 extra=(
   --dotfiles-repository https://github.com/chiwanpark/dotfiles.git
   --dotfiles-target-path '~/.dotfiles'
   --docker-path "$docker"
   --mount "type=bind,source=$HOME/.config/herdr,target=/run/herdr"
   --mount "type=bind,source=$(command -v herdr),target=/usr/local/bin/herdr"
+  --mount "type=bind,source=$images,target=$images"
   --additional-features '{"ghcr.io/chiwanpark/container-images/pi:1": {}}'
 )
 
