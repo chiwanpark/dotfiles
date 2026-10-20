@@ -36,6 +36,9 @@
     - command: [vim/install.sh, Initializing Vim...]
       stdout: true
       stderr: true
+    - command: [btop/install.sh, Protecting btop configuration...]
+      stdout: true
+      stderr: true
     - command: [herdr/install.sh, Installing herdr...]
       stdout: true
       stderr: true
