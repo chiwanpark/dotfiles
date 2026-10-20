@@ -52,6 +52,13 @@ export CLICOLOR=1 # for Darwin
 ls --color=auto &> /dev/null && alias ls='ls --color=auto'
 alias ll='ls -lh'
 
+cb() {
+  [ -t 0 ] && { echo "usage: cmd | cb" >&2; return 1; }
+  local data
+  data=$(base64 | tr -d '\r\n')
+  printf "\e]52;c;%s\a" "$data" > /dev/tty
+}
+
 # fzf
 FZF_ROOT=/usr/share/fzf
 if [[ -f "${FZF_ROOT}/key-bindings.zsh" ]]; then
