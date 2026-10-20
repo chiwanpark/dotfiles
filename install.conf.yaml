@@ -33,7 +33,7 @@
     - command: [git submodule update --init --recursive --quiet, Updating submodules...]
       stdout: true
       stderr: true
-    - command: [nvim --headless -c 'q', Initialize Vim]
+    - command: [vim/install.sh, Initializing Vim...]
       stdout: true
       stderr: true
     - command: [herdr/install.sh, Installing herdr...]
