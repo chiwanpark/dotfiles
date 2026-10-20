@@ -48,6 +48,7 @@ if [[ $cwd == "$root"/* ]]; then
 fi
 
 remote_env=(
+  --remote-env TZ=Asia/Seoul
   --remote-env HERDR_ENV=1
   --remote-env "HERDR_PANE_ID=${HERDR_PANE_ID:-}"
   --remote-env HERDR_BIN_PATH=/usr/local/bin/herdr

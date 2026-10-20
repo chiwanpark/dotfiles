@@ -10,7 +10,9 @@ if [[ -z "$common" ]]; then
 fi
 root=$(dirname "$common")
 
-if [[ ! -f "$root/.devcontainer/devcontainer.json" && ! -f "$root/.devcontainer.json" ]]; then
+config=$root/.devcontainer/devcontainer.json
+[[ -f "$config" ]] || config=$root/.devcontainer.json
+if [[ ! -f "$config" ]]; then
   echo "devcontainer is not found: $root"; pause; exit 1
 fi
 
@@ -23,14 +25,37 @@ extra=(
   --dotfiles-repository https://github.com/chiwanpark/dotfiles.git
   --dotfiles-target-path '~/.dotfiles'
   --docker-path "$docker"
+  --remote-env TZ=Asia/Seoul
   --mount "type=bind,source=$HOME/.config/herdr,target=/run/herdr"
   --mount "type=bind,source=$(command -v herdr),target=/usr/local/bin/herdr"
   --mount "type=bind,source=$images,target=$images"
-  --additional-features '{"ghcr.io/chiwanpark/container-images/pi:1": {}}'
 )
 
-local_conf=${XDG_CONFIG_HOME:-$HOME/.config}/herdr-dcup/options.local
+features=()
+
+add_mount() {
+  local source=$1 target=$2
+  if grep -Eq "target(=|\"[[:space:]]*:[[:space:]]*\")${target//./\\.}[,\"]" "$config"; then
+    return
+  fi
+  mkdir -p -m 700 "$source"
+  extra+=(--mount "type=bind,source=$source,target=$target")
+}
+
+container_user=$(sed -nE 's/.*"remoteUser"[[:space:]]*:[[:space:]]*"([^"$]+)".*/\1/p' "$config" | head -n 1)
+container_user=${container_user:-$(id -un)}
+if [[ $container_user == root ]]; then
+  container_home=/root
+else
+  container_home=/home/$container_user
+fi
+
+local_conf=${XDG_CONFIG_HOME:-$HOME/.config}/herdr-dcup.local
 [[ -f "$local_conf" ]] && source "$local_conf"
+
+if (( ${#features[@]} )); then
+  extra+=(--additional-features "{$(IFS=,; echo "${features[*]}")}")
+fi
 
 devcontainer up --workspace-folder "$root" "${extra[@]}" "$@"
 status=$?
