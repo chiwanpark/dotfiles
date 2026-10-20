@@ -11,6 +11,17 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local providers = vim.fn.stdpath("data") .. "/providers"
+if vim.fn.executable(providers .. "/python/bin/python") == 1 then
+  vim.g.python3_host_prog = providers .. "/python/bin/python"
+end
+if vim.fn.filereadable(providers .. "/node/node_modules/neovim/bin/cli.js") == 1 then
+  vim.g.node_host_prog = providers .. "/node/node_modules/neovim/bin/cli.js"
+end
+if vim.fn.executable(providers .. "/ruby/neovim-ruby-host") == 1 then
+  vim.g.ruby_host_prog = providers .. "/ruby/neovim-ruby-host"
+end
+
 if vim.g.clipboard == nil
   and (vim.env.TMUX or "") == ""
   and (vim.env.DISPLAY or "") == ""
