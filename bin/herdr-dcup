@@ -29,6 +29,9 @@ extra=(
   --additional-features '{"ghcr.io/chiwanpark/container-images/pi:1": {}}'
 )
 
+local_conf=${XDG_CONFIG_HOME:-$HOME/.config}/herdr-dcup/options.local
+[[ -f "$local_conf" ]] && source "$local_conf"
+
 devcontainer up --workspace-folder "$root" "${extra[@]}" "$@"
 status=$?
 [[ $status -eq 0 ]] && echo "devcontainer is up." || echo "fail to launch devcontainer: exitcode $status"
