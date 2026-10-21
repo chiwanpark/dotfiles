@@ -51,3 +51,9 @@ key = "prefix+shift+s"
 type = "plugin_action"
 command = "devcontainer.open-stop"
 description = "stop dev container"
+
+[[keys.command]]
+key = "prefix+shift+c"
+type = "popup"
+command = "herdr-dcclean"
+description = "clean up dev container"

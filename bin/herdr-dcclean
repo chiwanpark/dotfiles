@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+dir="${HERDR_ACTIVE_PANE_CWD:-$PWD}"
+yes=0
+[[ ${1:-} == -y || ${1:-} == --yes ]] && yes=1
+
+pause() { echo; read -rsn1 -p "Press any key to continue..."; }
+
+common=$(git -C "$dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
+if [[ -z "$common" ]]; then
+  echo "No Git repository: $dir"; pause; exit 1
+fi
+root=$(dirname "$common")
+
+docker=$(command -v docker-safe || command -v docker)
+if [[ -z "$docker" ]]; then
+  echo "docker is not found."; pause; exit 1
+fi
+
+mapfile -t containers < <("$docker" ps -aq --filter "label=devcontainer.local_folder=$root")
+
+projects=()
+if (( ${#containers[@]} )); then
+  mapfile -t projects < <("$docker" inspect -f '{{index .Config.Labels "com.docker.compose.project"}}' "${containers[@]}" | grep -v -e '^$' -e '^<no value>$' | sort -u)
+fi
+for project in "${projects[@]}"; do
+  mapfile -t -O "${#containers[@]}" containers < <("$docker" ps -aq --filter "label=com.docker.compose.project=$project")
+done
+if (( ${#containers[@]} )); then
+  mapfile -t containers < <(printf '%s\n' "${containers[@]}" | sort -u)
+fi
+
+networks=()
+for project in "${projects[@]}"; do
+  mapfile -t -O "${#networks[@]}" networks < <("$docker" network ls -q --filter "label=com.docker.compose.project=$project")
+done
+
+hash=$(printf '%s' "$root" | sha256sum | cut -d' ' -f1)
+patterns=("^vsc-.*$hash")
+if (( ${#containers[@]} )); then
+  while IFS='|' read -r project service; do
+    [[ -z $project || -z $service || $project == '<no value>' ]] && continue
+    patterns+=("^${project}[-_]${service}:")
+  done < <("$docker" inspect -f '{{index .Config.Labels "com.docker.compose.project"}}|{{index .Config.Labels "com.docker.compose.service"}}' "${containers[@]}")
+fi
+mapfile -t images < <("$docker" image ls --format '{{.Repository}}:{{.Tag}}' | grep -v '<none>' | grep -E -f <(printf '%s\n' "${patterns[@]}") | sort -u)
+
+if (( ${#containers[@]} + ${#networks[@]} + ${#images[@]} == 0 )); then
+  echo "Nothing to clean up: $root"; pause; exit 0
+fi
+
+echo "Cleaning up devcontainer: $root"
+if (( ${#containers[@]} )); then
+  echo "Containers:"
+  "$docker" inspect -f '  {{.Name}} ({{.Config.Image}})' "${containers[@]}" | sed 's#  /#  #'
+fi
+if (( ${#networks[@]} )); then
+  echo "Networks:"
+  "$docker" network inspect -f '  {{.Name}}' "${networks[@]}"
+fi
+if (( ${#images[@]} )); then
+  echo "Images:"
+  printf '  %s\n' "${images[@]}"
+fi
+
+if (( !yes )); then
+  echo
+  read -rn1 -p "Remove them? [y/N] " answer
+  echo
+  if [[ $answer != [yY] ]]; then
+    echo "Cancelled."; pause; exit 1
+  fi
+fi
+
+status=0
+if (( ${#containers[@]} )); then
+  "$docker" rm -f "${containers[@]}" >/dev/null || status=$?
+fi
+if (( ${#networks[@]} )); then
+  "$docker" network rm "${networks[@]}" >/dev/null || status=$?
+fi
+if (( ${#images[@]} )); then
+  "$docker" image rm "${images[@]}" >/dev/null || status=$?
+fi
+
+[[ $status -eq 0 ]] && echo "devcontainer is cleaned up." || echo "fail to clean up devcontainer: exitcode $status"
+pause
+exit $status
