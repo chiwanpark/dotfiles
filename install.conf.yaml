@@ -21,6 +21,7 @@
     ~/.config/herdr/config.toml: herdr/config.toml
     ~/.config/niri/config.kdl: niri/config.kdl
     ~/.config/kime/config.yaml: kime/config.yaml
+    ~/.config/environment.d/kime.conf: environment.d/kime.conf
     ~/.config/waybar: waybar
     ~/.config/display-switch/display-switch.ini: display-switch/display-switch.ini
     ~/.config/systemd/user/display-switch.service: display-switch/display-switch.service
