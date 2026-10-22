@@ -22,6 +22,7 @@
     ~/.config/niri/config.kdl: niri/config.kdl
     ~/.config/kime/config.yaml: kime/config.yaml
     ~/.config/environment.d/kime.conf: environment.d/kime.conf
+    ~/.config/ghostty/config.ghostty: ghostty/config.ghostty
     ~/.config/waybar: waybar
     ~/.config/display-switch/display-switch.ini: display-switch/display-switch.ini
     ~/.config/systemd/user/display-switch.service: display-switch/display-switch.service

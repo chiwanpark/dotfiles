@@ -1,0 +1,11 @@
+font-family = "CaskaydiaCove Nerd Font Mono"
+font-family = "D2Coding"
+font-size = 11
+cursor-style = block
+shell-integration = zsh
+shell-integration-features = no-cursor,ssh-terminfo,ssh-env,sudo
+font-feature = -calt
+clipboard-read = allow
+clipboard-write = allow
+mouse-shift-capture = false
+copy-on-select = false
