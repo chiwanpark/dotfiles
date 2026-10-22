@@ -34,7 +34,7 @@ For Karabiner-Elements configuration, type the following commands:
 $ ln -s ~/.dotfiles/karabiner/complex.json ~/.config/karabiner/assets/complex_modifications/complex.json
 ----
 
-For monospace fonts, run the following command:
+For monospace fonts and Font Awesome icons used by waybar, run the following command:
 
 [source,sh]
 ----
