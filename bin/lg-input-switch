@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 import ctypes
 import fcntl
+import glob
 import os
 import sys
 
 I2C_RDWR = 0x0707
-I2C_ADDR = 0x37
-I2C_BUS = "/dev/i2c-13"
+I2C_M_RD = 0x0001
+DDC_ADDR = 0x37
+EDID_ADDR = 0x50
+MONITOR_SERIAL = os.environ.get("LG_MONITOR_SERIAL", "401NTWG94681").encode()
 INPUTS = {"hdmi1": 0x90, "hdmi2": 0x91, "dp": 0xD0, "usbc": 0xD1}
 
 class I2CMsg(ctypes.Structure):
@@ -15,20 +18,60 @@ class I2CMsg(ctypes.Structure):
 class I2CRdwr(ctypes.Structure):
     _fields_ = [("msgs", ctypes.POINTER(I2CMsg)), ("nmsgs", ctypes.c_uint32)]
 
+def transfer(bus, *messages):
+    msgs = (I2CMsg * len(messages))(*(I2CMsg(addr, flags, len(buf), ctypes.cast(buf, ctypes.c_void_p)) for addr, flags, buf in messages))
+    fd = os.open(bus, os.O_RDWR)
+    try:
+        fcntl.ioctl(fd, I2C_RDWR, I2CRdwr(msgs, len(messages)))
+    finally:
+        os.close(fd)
+
+def connector_bus(connector):
+    ddc = os.path.join(connector, "ddc")
+    if os.path.exists(ddc):
+        return "/dev/" + os.path.basename(os.path.realpath(ddc))
+    children = sorted(glob.glob(os.path.join(connector, "i2c-*")))
+    return "/dev/" + os.path.basename(children[0]) if children else None
+
+def sysfs_edid(connector):
+    try:
+        with open(os.path.join(connector, "edid"), "rb") as f:
+            return f.read()
+    except OSError:
+        return b""
+
+def ddc_edid(bus):
+    offset = (ctypes.c_ubyte * 1)(0)
+    edid = (ctypes.c_ubyte * 128)()
+    try:
+        transfer(bus, (EDID_ADDR, 0, offset), (EDID_ADDR, I2C_M_RD, edid))
+    except OSError:
+        return b""
+    return bytes(edid)
+
+def find_bus():
+    buses = []
+    for connector in sorted(glob.glob("/sys/class/drm/card*-*")):
+        bus = connector_bus(connector)
+        if bus is None:
+            continue
+        if MONITOR_SERIAL in sysfs_edid(connector):
+            return bus
+        buses.append(bus)
+    for bus in buses:
+        if MONITOR_SERIAL in ddc_edid(bus):
+            return bus
+    raise SystemExit(f"monitor {MONITOR_SERIAL.decode()} not found on any display connector")
+
 def main():
     if len(sys.argv) != 2 or sys.argv[1] not in INPUTS:
         raise SystemExit(f"usage: {sys.argv[0]} {{{','.join(INPUTS)}}}")
     value = INPUTS[sys.argv[1]]
     checksum = 0x50 ^ 0x84 ^ 0x03 ^ 0xF4 ^ value
     data = (ctypes.c_ubyte * 7)(0x50, 0x84, 0x03, 0xF4, 0x00, value, checksum)
-    msg = I2CMsg(I2C_ADDR, 0, len(data), ctypes.cast(data, ctypes.c_void_p))
-    request = I2CRdwr(ctypes.pointer(msg), 1)
-    fd = os.open(I2C_BUS, os.O_RDWR)
-    try:
-        fcntl.ioctl(fd, I2C_RDWR, request)
-    finally:
-        os.close(fd)
-    print(f"sent LG vendor input command {sys.argv[1]} (0x{value:02x})")
+    bus = find_bus()
+    transfer(bus, (DDC_ADDR, 0, data))
+    print(f"sent LG vendor input command {sys.argv[1]} (0x{value:02x}) via {bus}")
 
 if __name__ == "__main__":
     main()
