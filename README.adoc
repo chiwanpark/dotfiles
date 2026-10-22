@@ -13,6 +13,7 @@ All files should be installed with the script.
 * btop
 * herdr
 * niri
+* kime
 * waybar
 * display-switch
 * Karabiner-Elements
