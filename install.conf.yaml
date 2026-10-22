@@ -20,6 +20,7 @@
     ~/.config/btop/btop.conf: btop/btop.conf
     ~/.config/herdr/config.toml: herdr/config.toml
     ~/.config/niri/config.kdl: niri/config.kdl
+    ~/.config/waybar: waybar
     ~/.config/display-switch/display-switch.ini: display-switch/display-switch.ini
     ~/.config/systemd/user/display-switch.service: display-switch/display-switch.service
     ~/.local/bin/:

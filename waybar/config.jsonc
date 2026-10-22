@@ -1,0 +1,75 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "spacing": 4,
+
+  "modules-left": [
+    "niri/workspaces",
+    "niri/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "wireplumber",
+    "backlight",
+    "custom/battery-limit",
+    "bluetooth",
+    "network",
+    "tray"
+  ],
+
+  "niri/workspaces": {
+    "format": "{index}",
+    "on-click": "activate"
+  },
+
+  "niri/window": {
+    "icon": true,
+    "format": "{title}",
+    "max-length": 64,
+    "separate-outputs": true
+  },
+
+  "clock": {
+    "format": " {:%Y-%m-%d (%a) %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": " Muted",
+    "format-icons": ["", "", ""],
+    "on-click": "pavucontrol"
+  },
+
+  "backlight": {
+    "device": "amdgpu_bl0",
+    "format": "{icon} {percent}%",
+    "format-icons": [""]
+  },
+
+  "custom/battery-limit": {
+    "exec": "/home/chiwanpark/.config/waybar/scripts/battery-limit.sh",
+    "return-type": "json",
+    "interval": 15,
+    "format": "{}",
+    "on-click": "/home/chiwanpark/.config/waybar/scripts/toggle-battery-limit.sh",
+    "tooltip": true
+  },
+
+  "bluetooth": {
+  },
+
+  "network": {
+    "format-wifi": " {essid}",
+    "format-ethernet": " {ipaddr}",
+    "format-disconnected": "⚠ Disconnected",
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+  },
+
+  "tray": {
+    "spacing": 10
+  }
+}
