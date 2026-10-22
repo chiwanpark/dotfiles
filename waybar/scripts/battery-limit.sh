@@ -1,16 +1,7 @@
 #!/usr/bin/env bash
 set -u
 
-find_battery_dir() {
-  for d in /sys/class/power_supply/BAT*; do
-    [ -d "$d" ] || continue
-    if [ -e "$d/capacity" ] && [ -e "$d/status" ]; then
-      echo "$d"
-      return 0
-    fi
-  done
-  return 1
-}
+. "$(dirname "$(readlink -f "$0")")/battery-common.sh"
 
 format_duration() {
   local total="$1"
@@ -45,10 +36,34 @@ battery_dir="$(find_battery_dir)" || {
 
 capacity="$(cat "$battery_dir/capacity" 2>/dev/null || echo 0)"
 status="$(cat "$battery_dir/status" 2>/dev/null || echo Unknown)"
-end_threshold="$(cat "$battery_dir/charge_control_end_threshold" 2>/dev/null || echo n/a)"
 power_now="$(cat "$battery_dir/power_now" 2>/dev/null || echo 0)"
 energy_now="$(cat "$battery_dir/energy_now" 2>/dev/null || echo 0)"
 energy_full="$(cat "$battery_dir/energy_full" 2>/dev/null || echo 0)"
+
+end_threshold="n/a"
+cap_note=""
+detect_limit_backend "$battery_dir"
+case "$limit_backend" in
+  threshold)
+    end_threshold="$(cat "$battery_dir/charge_control_end_threshold" 2>/dev/null || echo n/a)"
+    ;;
+  charge_types)
+    if charge_type="$(charge_types_active "$battery_dir/charge_types")"; then
+      cap_note=" (${charge_type})"
+      if [ "$charge_type" = "Long_Life" ]; then
+        end_threshold="$conservation_cap"
+      else
+        end_threshold=100
+      fi
+    fi
+    ;;
+  conservation_mode)
+    case "$(cat "$conservation_file" 2>/dev/null)" in
+      1) end_threshold="$conservation_cap"; cap_note=" (conservation mode)" ;;
+      0) end_threshold=100 ;;
+    esac
+    ;;
+esac
 
 case "$status" in
   "Charging"|"Full") icon="" ;;
@@ -96,7 +111,7 @@ if [ "$end_threshold" = "n/a" ]; then
   tooltip=$(printf '%b' "Battery: ${status}\nCharge: ${capacity}%\nRate: ${power_w} W\n${time_label}: ${time_text}\nCap: unavailable")
 else
   label="${icon} ${capacity}% · ${end_threshold}%"
-  tooltip=$(printf '%b' "Battery: ${status}\nCharge: ${capacity}%\nRate: ${power_w} W\n${time_label}: ${time_text}\nCap: ${end_threshold}%\nClick to toggle")
+  tooltip=$(printf '%b' "Battery: ${status}\nCharge: ${capacity}%\nRate: ${power_w} W\n${time_label}: ${time_text}\nCap: ${end_threshold}%${cap_note}\nClick to toggle")
 fi
 
 python3 - "$label" "$state_class" "$tooltip" <<'PY'
