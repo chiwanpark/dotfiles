@@ -71,7 +71,7 @@ input {
 
 // ThinkBook 14X ILL U5 3K OLED
 output "PNP(EDO) EE00QBA63.F Unknown" {
-    mode "2880x1800@60.000"
+    mode "2880x1800@120.000"
     scale 1.8
     transform "normal"
     position x=0 y=0
@@ -85,6 +85,7 @@ output "eDP-1" {
     position x=0 y=0
 }
 
+// 4k monitor at home
 output "LG Electronics LG ULTRAFINE 401NTWG94681" {
     mode "3840x2160@144.050"
     scale 1.75
