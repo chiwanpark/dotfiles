@@ -45,9 +45,10 @@
   },
 
   "backlight": {
-    "device": "amdgpu_bl0",
     "format": "{icon} {percent}%",
-    "format-icons": [""]
+    "format-icons": [""],
+    "on-scroll-up": "/home/chiwanpark/.config/waybar/scripts/brightness.sh up 1",
+    "on-scroll-down": "/home/chiwanpark/.config/waybar/scripts/brightness.sh down 1"
   },
 
   "custom/battery-limit": {
