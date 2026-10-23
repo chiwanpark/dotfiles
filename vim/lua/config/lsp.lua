@@ -122,6 +122,17 @@ function M.setup()
   })
   vim.lsp.enable("pylsp")
 
+  vim.lsp.config("rust_analyzer", {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      ["rust-analyzer"] = {
+        check = { command = "clippy" },
+      },
+    },
+  })
+  vim.lsp.enable("rust_analyzer")
+
   -- clangd
   vim.lsp.config("clangd", {
     on_attach = function(client, bufnr)

@@ -4,7 +4,7 @@ local parsers = {
   "dockerfile", "bash",
   "go", "gomod",
   "html", "css", "scss", "svelte", "typescript", "tsx", "javascript",
-  "lua", "python", "cpp", "c", "dart", "java", "scala",
+  "lua", "python", "cpp", "c", "dart", "java", "scala", "rust",
   "comment", "markdown", "json", "toml", "yaml",
   "sql", "graphql",
 }
