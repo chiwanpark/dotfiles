@@ -67,5 +67,5 @@ o.number = true
 o.signcolumn = "yes"
 
 -- enable mouse
-o.mouse = nvi
+o.mouse = "nvi"
 

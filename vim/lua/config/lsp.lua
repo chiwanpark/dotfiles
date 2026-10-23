@@ -5,13 +5,21 @@ function M.setup()
   local diag = vim.diagnostic
   local opts = { noremap = true, silent = true }
   keymap("n", "<Leader>e", diag.open_float, opts)
-  keymap("n", "[d", diag.goto_prev, opts)
-  keymap("n", "]d", diag.goto_next, opts)
+  local function jump(count)
+    diag.jump({
+      count = count,
+      on_jump = function(_, bufnr)
+        diag.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+      end,
+    })
+  end
+  keymap("n", "[d", function() jump(-1) end, opts)
+  keymap("n", "]d", function() jump(1) end, opts)
   keymap("n", "<Leader>q", diag.setloclist, opts)
 
   local on_attach = function(client, bufnr)
     local keymap = vim.keymap.set
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     local lsp = vim.lsp.buf
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -73,16 +81,17 @@ function M.setup()
             timeout_ms = 3000,
           })
 
-          local params = vim.lsp.util.make_range_params(nil, vim.lsp.util._get_offset_encoding())
+          local params = vim.lsp.util.make_range_params(nil, client.offset_encoding)
           params.context = {only = {"source.organizeImports"}}
 
           local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
-          for _, res in pairs(result or {}) do
-            for _, r in pairs(res.result or {}) do
+          for client_id, res in pairs(result or {}) do
+            local c = vim.lsp.get_client_by_id(client_id)
+            for _, r in pairs(c and res.result or {}) do
               if r.edit then
-                vim.lsp.util.apply_workspace_edit(r.edit, vim.lsp.util._get_offset_encoding())
+                vim.lsp.util.apply_workspace_edit(r.edit, c.offset_encoding)
               else
-                vim.lsp.buf.execute_command(r.command)
+                c:exec_cmd(r.command)
               end
             end
           end
