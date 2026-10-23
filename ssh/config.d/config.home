@@ -10,12 +10,6 @@ Host desk
     ForwardAgent yes
 
 Host workbench
-    HostName 192.168.1.119
-    Port 22
-    User chiwanpark
-    ForwardAgent yes
-
-Host workbench-external
     HostName workbench.chiwanpark.com
     Port 22
     User chiwanpark
@@ -24,7 +18,3 @@ Host workbench-external
 Host martini-snu
     HostName martini.snucse.org
     User chiwanpark
-
-Host pi
-    HostName pi.chiwanpark.com
-    User pi
