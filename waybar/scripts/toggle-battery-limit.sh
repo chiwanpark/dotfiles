@@ -76,3 +76,5 @@ case "$limit_backend" in
     write_sysfs "$target" "$conservation_file" || exit 1
     ;;
 esac
+
+pkill -RTMIN+8 -x waybar 2>/dev/null || true

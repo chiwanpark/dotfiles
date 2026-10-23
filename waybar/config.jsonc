@@ -54,6 +54,8 @@
     "exec": "/home/chiwanpark/.config/waybar/scripts/battery-limit.sh",
     "return-type": "json",
     "interval": 15,
+    "signal": 8,
+    "exec-on-event": false,
     "format": "{}",
     "on-click": "/home/chiwanpark/.config/waybar/scripts/toggle-battery-limit.sh",
     "tooltip": true
