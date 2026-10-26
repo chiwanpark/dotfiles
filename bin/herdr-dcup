@@ -53,6 +53,14 @@ fi
 local_conf=${XDG_CONFIG_HOME:-$HOME/.config}/herdr-dcup.local
 [[ -f "$local_conf" ]] && source "$local_conf"
 
+if grep -q docker-in-docker "$config" || [[ ${features[*]} == *docker-in-docker* ]]; then
+  tmp_volume=herdr-tmp-$(printf '%s' "$root" | sha256sum | cut -d' ' -f1)
+  if ! "$docker" volume inspect "$tmp_volume" >/dev/null 2>&1; then
+    "$docker" volume create --driver local --opt type=tmpfs --opt device=tmpfs --opt o=mode=1777 "$tmp_volume" >/dev/null
+  fi
+  extra+=(--mount "type=volume,source=$tmp_volume,target=/tmp")
+fi
+
 if (( ${#features[@]} )); then
   extra+=(--additional-features "{$(IFS=,; echo "${features[*]}")}")
 fi

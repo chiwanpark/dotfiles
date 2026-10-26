@@ -43,8 +43,9 @@ if (( ${#containers[@]} )); then
   done < <("$docker" inspect -f '{{index .Config.Labels "com.docker.compose.project"}}|{{index .Config.Labels "com.docker.compose.service"}}' "${containers[@]}")
 fi
 mapfile -t images < <("$docker" image ls --format '{{.Repository}}:{{.Tag}}' | grep -v '<none>' | grep -E -f <(printf '%s\n' "${patterns[@]}") | sort -u)
+mapfile -t volumes < <("$docker" volume ls -q --filter "name=^herdr-tmp-$hash$")
 
-if (( ${#containers[@]} + ${#networks[@]} + ${#images[@]} == 0 )); then
+if (( ${#containers[@]} + ${#networks[@]} + ${#images[@]} + ${#volumes[@]} == 0 )); then
   echo "Nothing to clean up: $root"; pause; exit 0
 fi
 
@@ -60,6 +61,10 @@ fi
 if (( ${#images[@]} )); then
   echo "Images:"
   printf '  %s\n' "${images[@]}"
+fi
+if (( ${#volumes[@]} )); then
+  echo "Volumes:"
+  printf '  %s\n' "${volumes[@]}"
 fi
 
 if (( !yes )); then
@@ -80,6 +85,9 @@ if (( ${#networks[@]} )); then
 fi
 if (( ${#images[@]} )); then
   "$docker" image rm "${images[@]}" >/dev/null || status=$?
+fi
+if (( ${#volumes[@]} )); then
+  "$docker" volume rm "${volumes[@]}" >/dev/null || status=$?
 fi
 
 [[ $status -eq 0 ]] && echo "devcontainer is cleaned up." || echo "fail to clean up devcontainer: exitcode $status"
