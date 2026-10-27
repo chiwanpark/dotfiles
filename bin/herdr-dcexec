@@ -41,7 +41,12 @@ if [[ -z "$docker" || -z $("$docker" ps -q --filter "label=devcontainer.local_fo
   run_host "$@"
 fi
 
-target="/workspaces/$(basename "$root")"
+name=$(basename "$root")
+if [[ $name == workspaces ]]; then
+  target=/workspaces
+else
+  target="/workspaces/$name"
+fi
 cwd=$(pwd -P)
 if [[ $cwd == "$root"/* ]]; then
   target+=${cwd#"$root"}
