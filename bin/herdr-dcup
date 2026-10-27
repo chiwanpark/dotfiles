@@ -51,7 +51,7 @@ add_mount() {
   if grep -Eq "target(=|\"[[:space:]]*:[[:space:]]*\")${target//./\\.}[,\"]" "$config"; then
     return
   fi
-  mkdir -p -m 700 "$source"
+  [[ -e "$source" ]] || mkdir -p -m 700 "$source"
   extra+=(--mount "type=bind,source=$source,target=$target")
 }
 
