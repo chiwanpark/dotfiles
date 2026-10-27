@@ -27,9 +27,22 @@ run_host() {
   exec "$@"
 }
 
+has_config() { [[ -f "$1/.devcontainer/devcontainer.json" || -f "$1/.devcontainer.json" ]]; }
+
 common=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
 root=${common:+$(dirname "$common")}
-if [[ -z "$root" || ! ( -f "$root/.devcontainer/devcontainer.json" || -f "$root/.devcontainer.json" ) ]]; then
+if [[ -z "$root" ]]; then
+  dir=$(pwd -P)
+  while :; do
+    if has_config "$dir"; then
+      root=$dir
+      break
+    fi
+    [[ $dir == / ]] && break
+    dir=$(dirname "$dir")
+  done
+fi
+if [[ -z "$root" ]] || ! has_config "$root"; then
   run_host "$@"
 fi
 
