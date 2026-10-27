@@ -5,11 +5,24 @@ yes=0
 
 pause() { echo; read -rsn1 -p "Press any key to continue..."; }
 
+has_config() { [[ -f "$1/.devcontainer/devcontainer.json" || -f "$1/.devcontainer.json" ]]; }
+
 common=$(git -C "$dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
-if [[ -z "$common" ]]; then
-  echo "No Git repository: $dir"; pause; exit 1
+root=${common:+$(dirname "$common")}
+if [[ -z "$root" ]]; then
+  d=$(cd "$dir" && pwd -P)
+  while [[ -n $d ]]; do
+    if has_config "$d"; then
+      root=$d
+      break
+    fi
+    [[ $d == / ]] && break
+    d=$(dirname "$d")
+  done
 fi
-root=$(dirname "$common")
+if [[ -z "$root" ]]; then
+  echo "devcontainer is not found: $dir"; pause; exit 1
+fi
 
 docker=$(command -v docker-safe || command -v docker)
 if [[ -z "$docker" ]]; then
