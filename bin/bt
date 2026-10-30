@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+    echo "usage: bt [connect|disconnect|info] <name>" >&2
+    echo "       bt list" >&2
+    exit 1
+}
+
+[[ $# -ge 1 ]] || usage
+
+case $1 in
+    list) bluetoothctl devices; exit ;;
+    connect|disconnect|info) cmd=$1; shift ;;
+    -h|--help) usage ;;
+    *) cmd=connect ;;
+esac
+
+[[ $# -ge 1 ]] || usage
+
+mapfile -t matches < <(bluetoothctl devices | cut -d' ' -f2- | grep -iF -- "$*" || true)
+
+case ${#matches[@]} in
+    0) echo "bt: no device matching '$*'" >&2; exit 1 ;;
+    1) exec bluetoothctl "$cmd" "${matches[0]%% *}" ;;
+    *) echo "bt: '$*' is ambiguous:" >&2; printf '  %s\n' "${matches[@]}" >&2; exit 1 ;;
+esac
